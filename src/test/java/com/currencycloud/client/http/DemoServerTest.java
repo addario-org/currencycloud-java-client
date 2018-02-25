@@ -24,16 +24,16 @@ import static org.junit.Assert.fail;
 /**
  * This is an integration test that executes actual http calls to the demo server
  * and shouldn't be run when unit tests are run.
- * Run when needed only.
+ * Run when needed only. Replace LOGIN_ID, API_KEY and SOME_UUID with appropiate values
  */
 @Ignore
 public class DemoServerTest {
 
     private static final Logger log = LoggerFactory.getLogger(DemoServerTest.class);
     private static final Random RND = new Random();
-    private static final String SOME_UUID = "385f0e80-1ffd-4d9c-8a64-11237bdb9284";
-    private static final String LOGIN_ID = "rjnienaber@gmail.com";
-    private static final String API_KEY = "ef0fd50fca1fb14c1fab3a8436b9ecb65f02f129fd87eafa45ded8ae257528f0";
+    private static final String SOME_UUID = "deadbeef-dead-beef-dead-beefdeadbeef";
+    private static final String LOGIN_ID = "development@currencycloud.com";
+    private static final String API_KEY = "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef";
 
     private final SimpleDateFormat dateFormat;
 

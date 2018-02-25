@@ -1,4 +1,4 @@
-name: tape_name_placeholder
+name: can_use_just_a_token
 interactions:
 - request:
     method: GET
