@@ -17,6 +17,7 @@ import si.mazi.rescu.RestProxyFactory;
 import si.mazi.rescu.serialization.jackson.JacksonConfigureListener;
 
 import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -593,6 +594,59 @@ public class CurrencyCloudClient {
         );
     }
 
+    ///////////////////////////////////////////////////////////////////
+    ///// IBANS ///////////////////////////////////////////////////////
+
+    public Iban createIban(Iban iban) throws CurrencyCloudException {
+        return api.createIban(
+                authToken,
+                userAgent,
+                iban.getCurrency()
+        );
+    }
+
+    public Ibans retrieveIbans(@Nullable String currency, @Nullable Pagination pagination) throws CurrencyCloudException {
+        if (pagination == null) {
+            pagination = Pagination.builder().build();
+        }
+        return api.retrieveIbans(
+                authToken,
+                userAgent,
+                currency,
+                pagination.getPage(),
+                pagination.getPerPage(),
+                pagination.getOrder(),
+                pagination.getOrderAscDesc()
+        );
+    }
+
+    public Ibans retrieveSubAccountsIban(String id, Pagination pagination) throws CurrencyCloudException {
+        if (pagination == null) {
+            pagination = Pagination.builder().build();
+        }
+        return api.retrieveSubAccountsIban(
+                authToken,
+                userAgent,
+                id,
+                pagination.getPage(),
+                pagination.getPerPage(),
+                pagination.getOrder(),
+                pagination.getOrderAscDesc());
+    }
+
+    public Ibans findSubAccountsIbans(String currency, Pagination pagination) throws CurrencyCloudException {
+        if (pagination == null) {
+            pagination = Pagination.builder().build();
+        }
+        return api.findSubAccountsIbans(
+                authToken,
+                userAgent,
+                currency,
+                pagination.getPage(),
+                pagination.getPerPage(),
+                pagination.getOrder(),
+                pagination.getOrderAscDesc());
+    }
 
     ///////////////////////////////////////////////////////////////////
     ///// PAYERS ///////////////////////////////////////////////////////

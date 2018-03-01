@@ -488,8 +488,60 @@ public interface CurrencyCloud {
             @Nullable @QueryParam("on_behalf_of") String onBehalfOf
     ) throws ResponseException;
 
+    ///// IBANS API ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////
+
+    /** Create an IBAN */
+    @POST
+    @Path("ibans/create")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    Iban createIban(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @FormParam("currency") String currency
+    ) throws ResponseException;
+
+    /** Retrieve an IBAN */
+    @GET
+    @Path("ibans")
+    Ibans retrieveIbans(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("currency") String currency,
+            @Nullable @QueryParam("page") Integer page,
+            @Nullable @QueryParam("per_page") Integer perPage,
+            @Nullable @QueryParam("order") String order,
+            @Nullable @QueryParam("order_asc_desc") Pagination.SortOrder orderAscDesc
+    ) throws ResponseException;
+
+    /** Retrieve IBAN of Sub-Account(s) */
+    @GET
+    @Path("ibans/subaccounts/{id}")
+    Ibans retrieveSubAccountsIban(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @PathParam("id") String id,
+            @Nullable @QueryParam("page") Integer page,
+            @Nullable @QueryParam("per_page") Integer perPage,
+            @Nullable @QueryParam("order") String order,
+            @Nullable @QueryParam("order_asc_desc") Pagination.SortOrder orderAscDesc
+    ) throws ResponseException;
+
+    /** Find IBANs of Sub-Account(s) */
+    @GET
+    @Path("ibans/subaccounts/find")
+    Ibans findSubAccountsIbans(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("currency") String currency,
+            @Nullable @QueryParam("page") Integer page,
+            @Nullable @QueryParam("per_page") Integer perPage,
+            @Nullable @QueryParam("order") String order,
+            @Nullable @QueryParam("order_asc_desc") Pagination.SortOrder orderAscDesc
+    ) throws ResponseException;
+
     ///// PAYERS API ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
 
     /** Retrieve a Payer */
     @GET
