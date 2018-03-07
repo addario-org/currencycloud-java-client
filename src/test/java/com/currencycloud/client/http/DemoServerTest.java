@@ -122,8 +122,7 @@ public class DemoServerTest {
 
     @Test
     public void testFindNoAccountsWithABadExample() throws Exception {
-        Account badExample = Account.create("No such account", "individual");
-        badExample.setCountry("DE");
+        Account badExample = Account.create("No such account", "individual", "No street", "No city", "No Code", "DE");
         badExample.setIdentificationValue("1111111");
         badExample.setIdentificationType("drivers_licence");
         badExample.setBrand("Brand");
@@ -141,7 +140,7 @@ public class DemoServerTest {
 
     @Test
     public void testCreateUpdateAccount() throws Exception {
-        Account account = currencyCloud.createAccount(Account.create("New Account xyz", "individual" , " Test Street", "London", "GB"));
+        Account account = currencyCloud.createAccount(Account.create("New Account xyz", "individual" , " 12 Steward St", "London", "E1 6FQ", "GB"));
 
         assertThat(account.getYourReference(), is(nullValue()));
         account.setYourReference("a");
@@ -171,11 +170,6 @@ public class DemoServerTest {
         assertThat(pagination.getPage(), equalTo(1));
 
 //        assertThat(balances.getBalances(), hasSize(greaterThan(0)));
-    }
-
-    @Test
-    public void testCreateResetToken() throws Exception {
-        currencyCloud.createResetToken(currencyCloud.getLoginId());
     }
 
     @Test

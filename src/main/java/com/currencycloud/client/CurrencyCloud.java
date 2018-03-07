@@ -54,17 +54,22 @@ public interface CurrencyCloud {
             @HeaderParam("X-Auth-Token") String authToken,
             @HeaderParam("User-Agent") String userAgent,
             @FormParam("account_name") String accountName,
-            @Nullable @FormParam("legal_entity_type") String legalEntityType,
+            @FormParam("legal_entity_type") String legalEntityType,
+            @FormParam("street") String street,
+            @FormParam("city") String city,
+            @FormParam("postal_code") String postalCode,
+            @FormParam("country") String country,
+            @Nullable @FormParam("state_or_province") String stateOrProvince,
+            @Nullable @FormParam("brand") String brand,
             @Nullable @FormParam("your_reference") String yourReference,
             @Nullable @FormParam("status") String status,
-            @Nullable @FormParam("street") String street,
-            @Nullable @FormParam("city") String city,
-            @Nullable @FormParam("state_or_province") String stateOrProvince,
-            @Nullable @FormParam("postal_code") String postalCode,
-            @Nullable @FormParam("country") String country,
             @Nullable @FormParam("spread_table") String spreadTable,
             @Nullable @FormParam("identification_type") String identificationType,
-            @Nullable @FormParam("identification_value") String identificationValue
+            @Nullable @FormParam("identification_value") String identificationValue,
+            @Nullable @FormParam("api_trading") Boolean apiTrading,
+            @Nullable @FormParam("online_trading") Boolean onlineTrading,
+            @Nullable @FormParam("phone_trading") Boolean phoneTrading
+
     ) throws ResponseException;
 
     /** Retrieve an Account */
@@ -330,16 +335,6 @@ public interface CurrencyCloud {
 
     ///////////////////////////////////////////////////////////////////
     ///// CONTACTS API ////////////////////////////////////////////////
-
-    /** Create reset token and send email notification */
-    @POST
-    @Path("contacts/reset_token/create")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    Object createResetToken(
-            @HeaderParam("X-Auth-Token") String authToken,
-            @HeaderParam("User-Agent") String userAgent,
-            @Nullable @FormParam("login_id") String loginId
-    ) throws ResponseException;
 
     /** Create Contact */
     @POST
@@ -668,6 +663,16 @@ public interface CurrencyCloud {
             @Nullable @FormParam("on_behalf_of") String onBehalfOf
     ) throws ResponseException;
 
+    /** Retrieve a Payment Submission*/
+    @GET
+    @Path("payments/{id}/submission")
+    Payment retrievePaymentSubmission(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @PathParam("id") String id,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf
+    ) throws ResponseException;
+
 
     ///////////////////////////////////////////////////////////////////
     ///// RATES API ///////////////////////////////////////////////////
@@ -749,6 +754,16 @@ public interface CurrencyCloud {
             @Nullable @QueryParam("currency") String currency
     ) throws ResponseException;
 
+    /** Payer Required Details */
+    @GET
+    @Path("reference/payer_required_details")
+    PayerRequiredDetails payerRequiredDetails(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @QueryParam("payer_country") String payerCountry,
+            @Nullable @QueryParam("payer_entity_type") String payerEntityType,
+            @Nullable @QueryParam("payment_type") String paymentType
+    ) throws ResponseException;
 
     ///////////////////////////////////////////////////////////////////
     ///// SETTLEMENTS API /////////////////////////////////////////////

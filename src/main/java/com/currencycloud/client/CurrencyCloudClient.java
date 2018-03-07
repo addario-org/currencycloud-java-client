@@ -17,7 +17,6 @@ import si.mazi.rescu.RestProxyFactory;
 import si.mazi.rescu.serialization.jackson.JacksonConfigureListener;
 
 import javax.annotation.Nullable;
-import javax.annotation.Nonnull;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -152,16 +151,20 @@ public class CurrencyCloudClient {
                 userAgent,
                 account.getAccountName(),
                 account.getLegalEntityType(),
-                account.getYourReference(),
-                account.getStatus(),
                 account.getStreet(),
                 account.getCity(),
-                account.getStateOrProvince(),
                 account.getPostalCode(),
                 account.getCountry(),
+                account.getStateOrProvince(),
+                account.getBrand(),
+                account.getYourReference(),
+                account.getStatus(),
                 account.getSpreadTable(),
                 account.getIdentificationType(),
-                account.getIdentificationValue()
+                account.getIdentificationValue(),
+                account.getApiTrading(),
+                account.getOnlineTrading(),
+                account.getPhoneTrading()
         );
     }
 
@@ -431,10 +434,6 @@ public class CurrencyCloudClient {
     ///////////////////////////////////////////////////////////////////
     ///// CONTACTS ////////////////////////////////////////////////////
 
-    public void createResetToken(@Nullable String loginId) throws ResponseException {
-        api.createResetToken(authToken, userAgent, loginId);
-    }
-
     public Contact createContact(Contact contact) throws ResponseException {
         return api.createContact(
                 authToken,
@@ -513,7 +512,6 @@ public class CurrencyCloudClient {
     public Contact currentContact() throws ResponseException {
         return api.currentContact(authToken, userAgent);
     }
-
 
     ///////////////////////////////////////////////////////////////////
     ///// CONVERSIONS /////////////////////////////////////////////////
@@ -655,7 +653,6 @@ public class CurrencyCloudClient {
         return api.retrievePayer(authToken, userAgent, payerId);
     }
 
-
     ///////////////////////////////////////////////////////////////////
     ///// PAYMENTS ////////////////////////////////////////////////////
 
@@ -784,6 +781,10 @@ public class CurrencyCloudClient {
         return api.deletePayment(authToken, userAgent, paymentId, getOnBehalfOf());
     }
 
+    public Payment retrievePaymentSubmission(String id) throws CurrencyCloudException {
+        return api.retrievePaymentSubmission(authToken, userAgent, id, getOnBehalfOf());
+    }
+
     ///////////////////////////////////////////////////////////////////
     ///// RATES ///////////////////////////////////////////////////////
 
@@ -825,6 +826,10 @@ public class CurrencyCloudClient {
 
     public List<SettlementAccount> settlementAccounts(@Nullable String currency) throws CurrencyCloudException {
         return api.settlementAccounts(authToken, userAgent, currency).getSettlementAccounts();
+    }
+
+    public List<PayerRequiredDetail> payerRequiredDetails(String payerCountry, @Nullable String payerEntityType, @Nullable String paymentType) throws CurrencyCloudException {
+        return api.payerRequiredDetails(authToken, userAgent, payerCountry, payerEntityType, paymentType).getPayerRequiredDetails();
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -891,7 +896,6 @@ public class CurrencyCloudClient {
         return api.unreleaseSettlement(authToken, userAgent, settlementId, getOnBehalfOf());
     }
 
-
     ///////////////////////////////////////////////////////////////////
     ///// TRANSACTIONS ////////////////////////////////////////////////
 
@@ -944,7 +948,6 @@ public class CurrencyCloudClient {
                 getOnBehalfOf()
         );
     }
-
 
     ///////////////////////////////////////////////////////////////////
 

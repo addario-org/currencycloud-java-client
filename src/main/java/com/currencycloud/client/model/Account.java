@@ -47,22 +47,25 @@ public class Account implements Entity {
 
     private String shortReference;
 
+    private Boolean apiTrading;
+
+    private Boolean onlineTrading;
+
+    private Boolean phoneTrading;
+
     protected Account() { }
 
-    private Account(String accountName, String legalEntityType, String street, String city, String country) {
+    private Account(String accountName, String legalEntityType, String street, String city, String postalCode, String country) {
         this.accountName = accountName;
         this.legalEntityType = legalEntityType;
         this.street = street;
         this.city = city;
+        this.postalCode = postalCode;
         this.country = country;
     }
 
-    public static Account create(String accountName, String legalEntityType, String street, String city, String country) {
-        return new Account(accountName, legalEntityType, street, city, country);
-    }
-
-    public static Account create(String accountName, String legalEntityType) {
-        return new Account(accountName, legalEntityType, null, null, null);
+    public static Account create(String accountName, String legalEntityType, String street, String city, String postalCode, String country) {
+        return new Account(accountName, legalEntityType, street, city, postalCode, country);
     }
 
     public static Account create() {
@@ -193,9 +196,33 @@ public class Account implements Entity {
         this.shortReference = shortReference;
     }
 
+    public Boolean getApiTrading() {
+        return apiTrading;
+    }
+
+    public void setApiTrading(Boolean apiTrading) {
+        this.apiTrading = apiTrading;
+    }
+
+    public Boolean getOnlineTrading() {
+        return onlineTrading;
+    }
+
+    public void setOnlineTrading(Boolean onlineTrading) {
+        this.onlineTrading = onlineTrading;
+    }
+
+    public Boolean getPhoneTrading() {
+        return phoneTrading;
+    }
+
+    public void setPhoneTrading(Boolean phoneTrading) {
+        this.phoneTrading = phoneTrading;
+    }
+
     @Override
     public String toString() {
-        return String.format("Account{id='%s', legalEntityType='%s', accountName='%s', brand='%s', yourReference='%s', status='%s', street='%s', city='%s', stateOrProvince='%s', country='%s', postalCode='%s', spreadTable='%s', createdAt=%s, updatedAt=%s, identificationType='%s', identificationValue='%s', shortReference='%s'}",
-                id, legalEntityType, accountName, brand, yourReference, status, street, city, stateOrProvince, country, postalCode, spreadTable, createdAt, updatedAt, identificationType, identificationValue, shortReference);
+        return String.format("Account{id='%s', legalEntityType='%s', accountName='%s', brand='%s', yourReference='%s', status='%s', street='%s', city='%s', stateOrProvince='%s', country='%s', postalCode='%s', spreadTable='%s', createdAt=%s, updatedAt=%s, identificationType='%s', identificationValue='%s', shortReference='%s', apiTrading='%s', onlineTrading='%s', phoneTrading='%s'}",
+                id, legalEntityType, accountName, brand, yourReference, status, street, city, stateOrProvince, country, postalCode, spreadTable, createdAt, updatedAt, identificationType, identificationValue, shortReference, apiTrading, onlineTrading, phoneTrading);
     }
 }
