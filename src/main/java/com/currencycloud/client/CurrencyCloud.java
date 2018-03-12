@@ -904,4 +904,57 @@ public interface CurrencyCloud {
             @Nullable @QueryParam("on_behalf_of") String onBehalfOf
     ) throws ResponseException;
 
+    ///////////////////////////////////////////////////////////////////
+    ///// TRANSFERS API ////////////////////////////////////////////
+    /** Retrieve a Transfer */
+    @GET
+    @Path("transfers/{id}")
+    Transfer retrieveTransfer(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @PathParam("id") String id,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf
+    ) throws ResponseException;
+
+    /** Find Transfers */
+    @GET
+    @Path("transfers/find")
+    Transfers findTransfers(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("short_reference") String shortReference,
+            @Nullable @QueryParam("source_account_id") String sourceAccountId,
+            @Nullable @QueryParam("destination_account_id") String destinationAccountId,
+            @Nullable @QueryParam("status") String status,
+            @Nullable @QueryParam("currency") String currency,
+            @Nullable @QueryParam("amount_from") BigDecimal amountFrom,
+            @Nullable @QueryParam("amount_to") BigDecimal amountTo,
+            @Nullable @QueryParam("created_at_from") java.sql.Date createdAtFrom,
+            @Nullable @QueryParam("created_at_to") java.sql.Date createdAtTo,
+            @Nullable @QueryParam("updated_at_from") java.sql.Date updatedAtFrom,
+            @Nullable @QueryParam("updated_at_to") java.sql.Date updatedAtTo,
+            @Nullable @QueryParam("completed_at_from") java.sql.Date completedAtFrom,
+            @Nullable @QueryParam("completed_at_to") java.sql.Date completedAtTo,
+            @Nullable @QueryParam("creator_contact_id") String creatorContactId,
+            @Nullable @QueryParam("creator_account_id") String creatorAccountId,
+            @Nullable @QueryParam("page") Integer page,
+            @Nullable @QueryParam("per_page") Integer perPage,
+            @Nullable @QueryParam("order") String order,
+            @Nullable @QueryParam("order_asc_desc") Pagination.SortOrder orderAscDesc,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf
+            ) throws ResponseException;
+
+    @POST
+    @Path("transfers/create")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    Transfer createTransfer(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @FormParam("source_account_id") String sourceAccountId,
+            @FormParam("destination_account_id") String destinationAccountId,
+            @FormParam("currency") String currency,
+            @FormParam("amount") BigDecimal amount,
+            @Nullable @FormParam("reason") String reason
+    ) throws ResponseException;
+
 }

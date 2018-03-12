@@ -185,16 +185,16 @@ public class DemoServerTest {
 
         String Contact_First_Name = randomString();
         String Contact_Last_Name = randomString();
-        String Contact_email_id = randomString() + "+jdjr@example.com";
+        String Contact_email_id = randomString() + "development@curencycloud.com";
 
         Contact contact = currencyCloud.createContact(
-                Contact.create(accountId, Contact_First_Name, Contact_Last_Name, Contact_email_id, "555 555 555 555")
+                Contact.create(accountId, Contact_First_Name, Contact_Last_Name, Contact_email_id, "+1 (646) 593 8724")
         );
 
         log.debug("contact = {}", contact);
         assertThat(contact.getMobilePhoneNumber(), is(nullValue()));
 
-        String newPhoneNumber = "555 666 777 888";
+        String newPhoneNumber = "+44 (0)20 3326 8173";
         contact.setMobilePhoneNumber(newPhoneNumber);
         contact = currencyCloud.updateContact(contact);
 

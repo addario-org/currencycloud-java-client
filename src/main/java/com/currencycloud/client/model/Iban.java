@@ -32,7 +32,10 @@ public class Iban implements Entity {
         return new Iban();
     }
 
-    /** Creates an IBAN */
+    /**
+     * Creates an IBAN as expected by the
+     * {@link com.currencycloud.client.CurrencyCloudClient#createIban(Iban)} method,
+     */
     public static Iban create(String currency) {
         return new Iban(currency);
     }
