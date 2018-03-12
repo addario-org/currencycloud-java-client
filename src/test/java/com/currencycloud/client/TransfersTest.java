@@ -2,7 +2,6 @@ package com.currencycloud.client;
 
 import co.freeside.betamax.Betamax;
 import co.freeside.betamax.MatchRule;
-import com.currencycloud.client.model.Pagination;
 import com.currencycloud.client.model.Transfer;
 import com.currencycloud.client.model.Transfers;
 import org.junit.Before;
@@ -11,12 +10,10 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TransfersTest extends BetamaxTestSupport {

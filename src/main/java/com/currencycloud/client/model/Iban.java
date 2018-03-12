@@ -131,7 +131,7 @@ public class Iban implements Entity {
 
     @Override
     public String toString() {
-        return String.format("Iban{uuid='%s', ibanCode='%s', accountId='%s', currency='%s', accountHolderName='%s', bankInstitutionName='%s', bankInstitutionAddress='%s', bankInstitutionCountry='%s', bicSwift='%s', createdAt='%s', updatedAt='%s'}",
+        return String.format("Iban{uuid='%s', ibanCode='%s', accountId='%s', currency='%s', accountHolderName='%s', bankInstitutionName='%s', bankInstitutionAddress='%s', bankInstitutionCountry='%s', bicSwift='%s', createdAt=%s, updatedAt=%s}",
                 uuid, ibanCode, accountId, currency, accountHolderName, bankInstitutionName, bankInstitutionAddress, bankInstitutionCountry, bicSwift, createdAt, updatedAt);
     }
 }

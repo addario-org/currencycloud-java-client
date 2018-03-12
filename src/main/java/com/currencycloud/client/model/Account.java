@@ -14,45 +14,25 @@ import java.util.Date;
 public class Account implements Entity {
 
     private String id;  
-
     private String legalEntityType;
-
     private String accountName;
-
-    private String brand;  
-
+    private String brand;
     private String yourReference;
-
-    private String status;  
-
-    private String street;  
-
-    private String city;  
-
+    private String status;
+    private String street;
+    private String city;
     private String stateOrProvince;
-
-    private String country;  
-
+    private String country;
     private String postalCode;
-
     private String spreadTable;
-
     private Date createdAt;
-
     private Date updatedAt;
-
     private String identificationType;
-
     private String identificationValue;
-
     private String shortReference;
-
     private Boolean apiTrading;
-
     private Boolean onlineTrading;
-
     private Boolean phoneTrading;
-
     protected Account() { }
 
     private Account(String accountName, String legalEntityType, String street, String city, String postalCode, String country) {

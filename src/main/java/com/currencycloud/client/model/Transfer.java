@@ -157,7 +157,7 @@ public class Transfer implements Entity {
 
     @Override
     public String toString() {
-        return String.format("Transfer{id='%s', shortReference='%s', sourceAccountId='%s', destinationAccountId='%s', currency='%s', amount=%s, status='%s', createdAt='%s', updatedAt='%s', completedAt='%s', creatorAccountId='%s', creatorContactId='%s', reason='%s'}",
+        return String.format("Transfer{id='%s', shortReference='%s', sourceAccountId='%s', destinationAccountId='%s', currency='%s', amount=%s, status='%s', createdAt=%s, updatedAt=%s, completedAt=%s, creatorAccountId='%s', creatorContactId='%s', reason='%s'}",
                 id, shortReference, sourceAccountId, destinationAccountId, currency, amount, status, createdAt, updatedAt, completedAt, creatorAccountId, creatorContactId, reason);
     }
 }
