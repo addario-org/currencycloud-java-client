@@ -234,7 +234,7 @@ org.yaml:snakeyaml:1.19:compile
 
 ## Release History
 
-* [1.0.3] - Update com.github.mmazi.rescu to latest version, desupport Java 7
+* [1.0.3] - Update com.github.mmazi.rescu to latest version, desupport Java 7, add support for Java 9 and Java 10, and fix bug in Beneficiary Date of Birth (#55)
 * [0.9.1] - Add Transfers and IBANs, add missing API paths and operations (#42), update dependencies to newer versions, bug fixes (including #32 and #38), and other minor changes
 * [0.7.8] - Address a concurrency issue discovered in the onBehalfOf functionality (#48) 
 
