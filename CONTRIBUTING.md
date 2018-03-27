@@ -54,4 +54,4 @@ Our sincere thanks for helping us create the best API for moving money anywhere 
 [MIT]: LICENSE.md
 [iss]: https://github.com/CurrencyCloud/currencycloud-java/issues
 [pr]: https://github.com/CurrencyCloud/currencycloud-java/compare
-[hof]: ALL_OF_FAME.md
+[hof]: HALL_OF_FAME.md
