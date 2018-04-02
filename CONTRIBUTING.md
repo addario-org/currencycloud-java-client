@@ -16,14 +16,12 @@ By making a contribution to this project, you certify that:
 is maintained indefinitely and may be redistributed consistent with this project or the open source license(s) involved.
 
 ## Steps
-
 **1. Fork, then clone the repo:**
 ```Shell
 	git clone git@github.com:your-username/currencycloud-java.git
 ```
 
 **2. Work on your changes:**
-
 - Make your change.
 - Add tests for your change.
 - Make commits of logical and atomic units.
@@ -42,10 +40,10 @@ is maintained indefinitely and may be redistributed consistent with this project
 **5. At this point you're waiting on us.** We like to at least comment on pull requests within a week, but sometimes we may take longer. We may suggest some changes, improvements or alternatives. We may decline your contribution but we will explain our reasons. In all cases, the maintainer's decision is final.
 
 Some things that will increase the chance that your pull request is accepted, in karma order:
-- changes that are cosmetic in nature, or do not add anything substantial to the stability, functionality, or testability of the SDK will generally not be accepted
-- add tests for your changes and ensure **all** tests pass. The first thing our maintainers check on every pull request is whether Travis has given the all OK. If there are valid reasons why the tests cannot pass, make your case in the comments section
-- follow the SDK's code style. Start reading our code and you'll get the hang of it. We try to optimize for readability which in turn leads to maintainability
-- don't change the SDK's version number. Our maintainers will assign one upon commit
+- changes that are cosmetic in nature, or do not add anything substantial to the stability, functionality, or testability of the SDK will generally not be accepted.
+- add tests for your changes and ensure **all** tests pass. The first thing our maintainers check on every pull request is whether Travis has given the All-OK. If there are valid reasons why the tests cannot pass, make your case in the comments section.
+- follow the SDK's code style. Start reading our code and you'll get the hang of it. We try to optimize for readability which in turn leads to maintainability.
+- don't change the SDK's version number. Our maintainers will assign one upon commit.
 - don't add your name to the build. Our maintainers will include you in our [Hall of Fame][hof] upon commit, unless you **explicitly** tell us not to.
 
 ## Acknowledgement

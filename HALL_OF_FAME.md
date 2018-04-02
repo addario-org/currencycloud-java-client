@@ -11,7 +11,7 @@ Many people have helped us along the way and we are sincerely grateful to all of
 |Jane Doe|www.example.com|
 |Joe Blogss|joe@blogss.org|
 
- In our book, they have reached [**honorificabilitudinitatibus**][wow] :-)
+ In our book, they have reached [**honorificabilitudinitatibus**][sesqui] :-)
 
 [ccy]: https://www.currencycloud.com/
-[wow]: https://en.wikipedia.org/wiki/Honorificabilitudinitatibus
+[sesqui]: https://en.wikipedia.org/wiki/Honorificabilitudinitatibus
