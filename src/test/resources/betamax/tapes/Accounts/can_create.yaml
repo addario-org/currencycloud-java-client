@@ -1,4 +1,4 @@
-name: can_create_account
+name: can_create
 interactions:
 - request:
     method: POST
@@ -6,7 +6,7 @@ interactions:
     body: account_name=Acme+Ltd&legal_entity_type=company&street=12+Steward+St&city=London&postal_code=E1+6FQ&country=GB&state_or_province=City+of+London&brand=currencycloud&your_reference=POS-UID-23523&status=enabled&spread_table=no_markup&identification_type=passport&identification_value=AE02315508BF&api_trading=true&online_trading=true&phone_trading=true
     headers:
       X-Auth-Token:
-      - 6f5f99d1b860fc47e8a186e3dce0d3f9
+      - acad59188ce6ddb54d4043bc4efb5f57
       User-Agent:
       - CurrencyCloudSDK/2.0 Java/1.0.3
   response:
