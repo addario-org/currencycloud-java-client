@@ -14,7 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import si.mazi.rescu.ClientConfig;
 import si.mazi.rescu.RestProxyFactory;
-import si.mazi.rescu.serialization.jackson.JacksonConfigureListener;
+import si.mazi.rescu.serialization.jackson.DefaultJacksonObjectMapperFactory;
+import si.mazi.rescu.serialization.jackson.JacksonObjectMapperFactory;
 
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
@@ -60,8 +61,16 @@ public class CurrencyCloudClient {
         this.loginId = loginId;
         this.apiKey = apiKey;
         ClientConfig config = new ClientConfig();
-        config.setJacksonConfigureListener(
-                new JacksonConfigureListener() {
+
+        config.setJacksonObjectMapperFactory(
+                new JacksonObjectMapperFactory() {
+                    @Override
+                    public ObjectMapper createObjectMapper() {
+                        return new DefaultJacksonObjectMapperFactory()
+                                .createObjectMapper()
+                                .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                    }
+
                     @Override
                     public void configureObjectMapper(ObjectMapper objectMapper) {
                         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
