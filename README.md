@@ -79,7 +79,7 @@ System.out.println("Balances: " + balances.stream()
 // End session
 currencyCloud.endSession();
 ```
-For a slightly better example, see
+For a better example, see
 [CurrencyCloudCookbook.java](/src/test/java/com/currencycloud/examples/CurrencyCloudCookbook.java), which is an implementation of [the Cookbook](https://connect.currencycloud.com/documentation/getting-started/cookbook) from the documentation.
 
 ## Common Misconceptions and Antipatterns
@@ -198,7 +198,7 @@ express a dependency on a major version and expect all minor and patch versions 
 ## Deprecation Policy
 Technology evolves quickly and we are always looking for better ways to serve our customers. From time to time we need to make room for innovation by removing sections of code that are no longer necessary. We understand this can be disruptive and consequently we have designed a Deprecation Policy that protects our customers's investment and that allows us to take advantage of modern tools, frameworks and practices in developing software.
 
-Deprecation means that we discourage the use of a feature, design or practice because it has been superseded or is no longer considered efficient or safe. But instead of removing it immediately, we mark it as **@Deprecated** to provide backwards compatibility and time for you to update your projects. While the deprecated feature remains in the SDK for a period of time, we advise that you replace it with the recommended alternative which will be explained in the relevant section of the code.
+Deprecation means that we discourage the use of a feature, design or practice because it has been superseded or is no longer considered efficient or safe but instead of removing it immediately, we mark it as **@Deprecated** to provide backwards compatibility and time for you to update your projects. While the deprecated feature remains in the SDK for a period of time, we advise that you replace it with the recommended alternative which will be explained in the relevant section of the code.
 
 We will remove deprecated features after **six months** from the time of announcement.
 
