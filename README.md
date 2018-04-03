@@ -191,18 +191,21 @@ org.hamcrest:hamcrest-junit:2.0.0.0:compile
 org.yaml:snakeyaml:1.19:compile
 ```
 
+## Contributing
+**We welcome pull requests from everyone!** Please see [CONTRIBUTING][contr]
+
 ## Versioning
 This project uses [semantic versioning][semver]. You can safely
 express a dependency on a major version and expect all minor and patch versions to be backwards compatible.
 
 ## Deprecation Policy
-Technology evolves quickly and we are always looking for better ways to serve our customers. From time to time we need to make room for innovation by removing sections of code that are no longer necessary. We understand this can be disruptive and consequently we have designed a Deprecation Policy that protects our customers's investment and that allows us to take advantage of modern tools, frameworks and practices in developing software.
+Technology evolves quickly and we are always looking for better ways to serve our customers. From time to time we need to make room for innovation by removing sections of code that are no longer necessary. We understand this can be disruptive and consequently we have designed a Deprecation Policy that protects our customers' investment and that allows us to take advantage of modern tools, frameworks and practices in developing software.
 
-Deprecation means that we discourage the use of a feature, design or practice because it has been superseded or is no longer considered efficient or safe but instead of removing it immediately, we mark it as **@Deprecated** to provide backwards compatibility and time for you to update your projects. While the deprecated feature remains in the SDK for a period of time, we advise that you replace it with the recommended alternative which will be explained in the relevant section of the code.
+Deprecation means that we discourage the use of a feature, design or practice because it has been superseded or is no longer considered efficient or safe but instead of removing it immediately, we mark it as **@Deprecated** to provide backwards compatibility and time for you to update your projects. While the deprecated feature remains in the SDK for a period of time, we advise that you replace it with the recommended alternative which is explained in the relevant section of the code.
 
-We will remove deprecated features after **six months** from the time of announcement.
+We remove deprecated features after **six months** from the time of announcement.
 
-The security of our customers' assets is of paramount importance and sometimes we will have to deprecate features because they may pose a security threat or because new, more secure, ways are available. On such occasions we reserve the right to set a different deprecation period which may range from **immediate removal** to the standard **six months**. 
+The security of our customers' assets is of paramount importance to us and sometimes we have to deprecate features because they may pose a security threat or because new, more secure, ways are available. On such occasions we reserve the right to set a different deprecation period which may range from **immediate removal** to the standard **six months**. 
 
 Once a feature has been marked as deprecated, we no longer develop the code or implement bug fixes. We only do security fixes.
 
@@ -221,7 +224,7 @@ As of 1.0.3: Beneficiary.createForUpdate and Beneficiary.createForValidate
 ```
 
 # Support
-We will actively support the latest version of the SDK. We will support the immediate previous version on best-efforts basis. All other versions are deprecated and no longer maintained.
+We actively support the latest version of the SDK. We support the immediate previous version on best-efforts basis. All other versions are no longer supported nor maintained.
 
 # Release History
 * [1.0.3] - Update com.github.mmazi.rescu to latest version, desupport Java 7, add support for Java 9 and Java 10, fix bug in Beneficiary Date of Birth (#55), introduce builder pattern for *find* query parameters and deprecate tight-coupled methods  
@@ -243,3 +246,4 @@ Copyright (c) 2015-2018 Currencycloud. See [LICENSE][license] for details.
 [semver]:    http://semver.org/
 [sonatype]:  https://oss.sonatype.org/
 [license]:   LICENSE.md
+[contr]:     CONTRIBUTING.md
