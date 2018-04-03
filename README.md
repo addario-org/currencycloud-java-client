@@ -194,6 +194,8 @@ org.yaml:snakeyaml:1.19:compile
 ## Contributing
 **We welcome pull requests from everyone!** Please see [CONTRIBUTING][contr]
 
+Our sincere thanks for [helping us][hof] create the best API for moving money anywhere around the world!
+
 ## Versioning
 This project uses [semantic versioning][semver]. You can safely
 express a dependency on a major version and expect all minor and patch versions to be backwards compatible.
@@ -247,3 +249,4 @@ Copyright (c) 2015-2018 Currencycloud. See [LICENSE][license] for details.
 [sonatype]:  https://oss.sonatype.org/
 [license]:   LICENSE.md
 [contr]:     CONTRIBUTING.md
+[hof]:       HALL_OF_FAME.md
