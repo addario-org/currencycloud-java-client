@@ -134,7 +134,7 @@ public class CurrencyCloudClient {
     /**
      * Starts a logged in session
      */
-    void authenticate() throws CurrencyCloudException {
+    public void authenticate() throws CurrencyCloudException {
         if (loginId == null || apiKey == null) {
             throw new IllegalArgumentException("Both loginId and apiKey must be set.");
         }

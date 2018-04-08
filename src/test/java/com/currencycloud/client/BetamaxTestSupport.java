@@ -2,10 +2,14 @@ package com.currencycloud.client;
 
 import co.freeside.betamax.Recorder;
 import org.junit.Rule;
+import org.junit.rules.TestName;
 
 import java.io.File;
 
 public class BetamaxTestSupport extends JsonTestSupport {
+
+    @Rule
+    public final TestName name = new TestName();
 
     @Rule
     public Recorder createRecorder() {
