@@ -12,8 +12,6 @@ import com.currencycloud.client.model.Transactions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -32,7 +30,6 @@ public class BackOffTest extends BetamaxTestSupport {
     private String loginId = "development@currencycloud.com";
     private String apiKey = "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef";
     private String authToken = "deadbeefdeadbeefdeadbeefdeadbeef";
-    private static final Logger log = LoggerFactory.getLogger(CurrencyCloudClient.class);
     private CurrencyCloudClient client;
 
     @Before
@@ -42,7 +39,7 @@ public class BackOffTest extends BetamaxTestSupport {
 
     @Before
     @After
-    public void methodName() { log.debug("<<<<<<<<<<<<<<<<<<<<<<<<< " + name.getMethodName() + " >>>>>>>>>>>>>>>>>>>>>>>>>"); }
+    public void methodName() { log.debug("------------------------- " + name.getMethodName() + " -------------------------"); }
 
     @Test
     public void testBackOffoverflowMinMaxIsHandled() {
