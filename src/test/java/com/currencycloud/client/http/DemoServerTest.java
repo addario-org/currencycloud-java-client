@@ -245,10 +245,15 @@ public class DemoServerTest {
     public void testConversions() throws Exception {
         // Today + 7 days:
         Date date = getDate(dateFormat.format(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)));
-        Conversion conversion = Conversion.create(
-                "EUR", "GBP", "buy", date, null, null, null, null, null
-        );
-        conversion = currencyCloud.createConversion(conversion, new BigDecimal("10000.00"), "Invoice Payment", true);
+        Conversion conversion = Conversion.create();
+        conversion.setBuyCurrency("EUR");
+        conversion.setSellCurrency("GBP");
+        conversion.setFixedSide("buy");
+        conversion.setAmount(new BigDecimal("10000.00"));
+        conversion.setReason("Invoice Payment");
+        conversion.setTermAgreement(true);
+
+        conversion = currencyCloud.createConversion(conversion);
 
         log.debug("conversion = {}", conversion);
 
@@ -309,8 +314,15 @@ public class DemoServerTest {
         beneficiary = currencyCloud.createBeneficiary(beneficiary);
         log.debug("beneficiary = {}", beneficiary);
 
-        Conversion conversion = Conversion.create("EUR", "GBP", "buy");
-        conversion = currencyCloud.createConversion(conversion, new BigDecimal("10000.00"), "Invoice Payment", true);
+        Conversion conversion = Conversion.create();
+        conversion.setBuyCurrency("EUR");
+        conversion.setSellCurrency("GBP");
+        conversion.setFixedSide("buy");
+        conversion.setAmount(new BigDecimal("10000.00"));
+        conversion.setReason("Invoice Payment");
+        conversion.setTermAgreement(true);
+
+        conversion = currencyCloud.createConversion(conversion);
         log.debug("conversion = {}", conversion);
 
         BigDecimal amount = randomAmount();
@@ -409,10 +421,15 @@ public class DemoServerTest {
         assertFound(settlements, settlement);
         assertThat(settlement.getStatus(), equalTo("open"));
 
-        Conversion conversion = currencyCloud.createConversion(
-                Conversion.create("EUR", "GBP", "buy"),
-                new BigDecimal("10000.00"), "Invoice Payment", true
-        );
+        Conversion conversion = Conversion.create();
+        conversion.setBuyCurrency("EUR");
+        conversion.setSellCurrency("GBP");
+        conversion.setFixedSide("buy");
+        conversion.setAmount(new BigDecimal("10000.00"));
+        conversion.setReason("Invoice Payment");
+        conversion.setTermAgreement(true);
+
+        conversion = currencyCloud.createConversion(conversion);
         log.debug("conversion = {}", conversion);
 
         settlement = currencyCloud.addConversion(settlement.getId(), conversion.getId());
