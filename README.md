@@ -48,7 +48,7 @@ ch.qos.logback:logback-core:1.2.3:compile
 com.fasterxml.jackson.core:jackson-annotations:2.9.4:compile
 com.fasterxml.jackson.core:jackson-core:2.9.4:compile
 com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.4:compile
-com.github.mmazi:rescu:2.0.1:compile
+com.github.mmazi:rescu:2.0.2:compile
 com.google.code.findbugs:jsr305:3.0.2:compile
 javax.ws.rs:javax.ws.rs-api:2.1:compile
 javax.ws.rs:jsr311-api:1.1.1:compile
@@ -241,7 +241,7 @@ As of 1.2.3: Iban.create(String)
 We actively support the latest version of the SDK. We support the immediate previous version on best-efforts basis. All other versions are no longer supported nor maintained.
 
 # Release History
-* [1.2.3] - Add VANs, add exponential backoff-and-retry, change toString in Currencycloud model classes to return RFC4627 compliant JSON 
+* [1.2.3] - Add VANs, add exponential backoff-and-retry, change toString in Currencycloud model classes to return RFC4627 compliant JSON, refactor ThreadSupport to private inner class and improve debug logging
 * [1.0.3] - Update com.github.mmazi.rescu to latest version, desupport Java 7, add support for Java 9 and Java 10, fix bug in Beneficiary Date of Birth (#55), introduce builder pattern for *find* query parameters, deprecate tight-coupled methods and add production logging settings filtering out token and key  
 * [0.9.1] - Add Transfers and IBANs, add missing API paths and operations (#42), update dependencies to newer versions, bug fixes (including #32 and #38), and other minor changes
 * [0.7.8] - Address a concurrency issue discovered in the onBehalfOf functionality (#48) 

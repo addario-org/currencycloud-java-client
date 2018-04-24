@@ -413,8 +413,8 @@ public class DemoServerTest {
     public void testSettlements() throws Exception {
         Date to = getDate("2115-01-01");
 
-        Settlement settlement = currencyCloud.createSettlement();
-        Settlement settlementCondition = currencyCloud.createSettlement();
+        Settlement settlement = currencyCloud.createSettlement(Settlement.create());
+        Settlement settlementCondition = currencyCloud.createSettlement(Settlement.create());
         settlementCondition.setShortReference(settlement.getShortReference());
 
         List<Settlement> settlements = currencyCloud.findSettlements(settlementCondition, null).getSettlements();

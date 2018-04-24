@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  *
  * Copyright (c) 2016 Chris Campo
- * With additions by Currencycloud, 2018
+ * With additions and modifications by Currencycloud, 2018
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
