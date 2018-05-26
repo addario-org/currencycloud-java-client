@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/CurrencyCloud/currencycloud-java.png?branch=master)](https://travis-ci.org/CurrencyCloud/currencycloud-java)
 # Currencycloud API v2 Java client
-## Version: 1.2.3
+## Version: 1.3.0
 This is the official Java SDK for the Currencycloud API. Additional documentation for each API endpoint can be found at [developer.currencycloud.com][docs].
 
 If you have any queries please contact our development team at development@currencycloud.com Please quote your login Id in any correspondence as this allows us to locate your account and give you the support you need.
@@ -26,7 +26,7 @@ To use the Currencycloud SDK in a Maven project, add the following dependency to
 <dependency>
     <groupId>com.currencycloud.currencycloud-java</groupId>
     <artifactId>currencycloud-java</artifactId>
-    <version>1.2.3</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
@@ -34,13 +34,13 @@ To use the Currencycloud SDK in a Maven project, add the following dependency to
 Download the Currencycloud SDK jar:
 1. Open https://oss.sonatype.org/#nexus-search;quick~currencycloud-java
 2. Navigate to the version of currencycloud-java that you wish to use
-3. Download the currencycloud-java-1.2.3.jar 
+3. Download the currencycloud-java-1.3.0.jar 
 
 Get the list of all dependencies:
 ```Shell
 mvn dependency:list -DincludeScope=runtime
 ```
-As of version 1.2.3, this returns the following list:
+As of version 1.3.0, this returns the following list:
 ```
 cglib:cglib:3.2.6:compile
 ch.qos.logback:logback-classic:1.2.3:compile
@@ -241,6 +241,7 @@ As of 1.2.3: Iban.create(String)
 We actively support the latest version of the SDK. We support the immediate previous version on best-efforts basis. All other versions are no longer supported nor maintained.
 
 # Release History
+* [1.3.0] - Add PaymentSubmission class and fix retrievePaymentSubmission
 * [1.2.3] - Add VANs, add exponential backoff-and-retry, change toString in Currencycloud model classes to return RFC4627 compliant JSON, refactor ThreadSupport to private inner class and improve debug logging
 * [1.0.3] - Update com.github.mmazi.rescu to latest version, desupport Java 7, add support for Java 9 and Java 10, fix bug in Beneficiary Date of Birth (#55), introduce builder pattern for *find* query parameters, deprecate tight-coupled methods and add production logging settings filtering out token and key  
 * [0.9.1] - Add Transfers and IBANs, add missing API paths and operations (#42), update dependencies to newer versions, bug fixes (including #32 and #38), and other minor changes
