@@ -564,6 +564,115 @@ public interface CurrencyCloud {
             @Nullable @QueryParam("order_asc_desc") Pagination.SortOrder orderAscDesc
     ) throws ResponseException;
 
+    /** Cancel a Conversion */
+    @POST
+    @Path("conversions/{id}/cancel")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionCancellation cancelConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id,
+            @Nullable @FormParam("notes") String notes
+    ) throws ResponseException;
+
+    @GET
+    @Path("conversions/{id}/cancellation_quote")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionCancellationQuote quoteCancelConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id
+    ) throws ResponseException;
+
+    @GET
+    @Path("conversions/{id}/date_change_quote")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionDateChange quoteChangeDateConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id,
+            @QueryParam("new_settlement_date") Date newSettlementDate
+    ) throws ResponseException;
+
+    @POST
+    @Path("conversions/{id}/date_change")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionDateChange changeDateConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id,
+            @FormParam("new_settlement_date") Date newSettlementDate
+    ) throws ResponseException;
+
+    @GET
+    @Path("conversions/{id}/date_change/details")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionDateChangeDetails changeDateDetailsConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id
+    ) throws ResponseException;
+
+    @GET
+    @Path("conversions/{id}/split_preview")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionSplit previewSplitConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id,
+            @QueryParam("amount") BigDecimal amount
+    ) throws ResponseException;
+
+    @POST
+    @Path("conversions/{id}/split")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionSplit splitConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id,
+            @FormParam("amount") BigDecimal amount
+    ) throws ResponseException;
+
+    @GET
+    @Path("conversions/{id}/split_history")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionSplitHistory historySplitConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @PathParam("id") String id
+    ) throws ResponseException;
+
+    @GET
+    @Path("conversions/profit_and_loss")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    ConversionProfitAndLosses retrieveProfitAndLossConversion(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @Nullable @QueryParam("on_behalf_of") String onBehalfOf,
+            @Nullable @QueryParam("account_id") String accountId,
+            @Nullable @QueryParam("contact_id") String contactId,
+            @Nullable @QueryParam("conversion_id") String conversionId,
+            @Nullable @QueryParam("event_type") String evenType,
+            @Nullable @QueryParam("event_date_time_from") Date eventDateTimeFrom,
+            @Nullable @QueryParam("event_date_time_to") Date eventDateTimeTo,
+            @Nullable @QueryParam("amount_from") BigDecimal amountFrom,
+            @Nullable @QueryParam("amount_to") BigDecimal amountTo,
+            @Nullable @QueryParam("currency") String currency,
+            @Nullable @QueryParam("scope") String scope,
+            @Nullable @QueryParam("page") Integer page,
+            @Nullable @QueryParam("per_page") Integer perPage,
+            @Nullable @QueryParam("order") String order,
+            @Nullable @QueryParam("order_asc_desc") Pagination.SortOrder orderAscDesc
+    ) throws ResponseException;
+
     ///// IBANS API ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////
 
@@ -868,7 +977,7 @@ public interface CurrencyCloud {
             @QueryParam("conversion_pair") String conversionPair,
             @Nullable @QueryParam("start_date") Date startDate
     ) throws ResponseException;
-    
+
     /** Payment Dates */
     @GET
     @Path("reference/payment_dates")
