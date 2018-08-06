@@ -7,9 +7,8 @@ import net.minidev.json.JSONObject;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PaymentAuthorisation implements Entity {
+public class PaymentAuthorisation {
 
-    private String id;
     private String paymentId;
     private String paymentStatus;
     private Boolean updated;
@@ -22,14 +21,6 @@ public class PaymentAuthorisation implements Entity {
 
     private PaymentAuthorisation(String paymentId) {
         this.paymentId = paymentId;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getPaymentId() {
