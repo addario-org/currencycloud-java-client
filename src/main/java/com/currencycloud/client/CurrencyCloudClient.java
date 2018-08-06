@@ -1209,6 +1209,11 @@ public class CurrencyCloudClient {
         return api.payerRequiredDetails(authToken, userAgent, payerCountry, payerEntityType, paymentType).getPayerRequiredDetails();
     }
 
+    public List<PaymentPurposeCode> paymentPurposeCodes(String currency, @Nullable String entityType) throws CurrencyCloudException {
+        return api.paymentPurposeCodes(authToken, userAgent, currency, entityType).getPurposeCodes();
+    }
+
+
     ///////////////////////////////////////////////////////////////////
     ///// SETTLEMENTS /////////////////////////////////////////////////
 

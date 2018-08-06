@@ -1029,6 +1029,16 @@ public interface CurrencyCloud {
             @Nullable @QueryParam("payment_type") String paymentType
     ) throws ResponseException;
 
+    /** Payment Purpose Codes */
+    @GET
+    @Path("reference/payment_purpose_codes")
+    PaymentPurposeCodes paymentPurposeCodes(
+            @HeaderParam("X-Auth-Token") String authToken,
+            @HeaderParam("User-Agent") String userAgent,
+            @QueryParam("currency") String currency,
+            @Nullable @QueryParam("entity_type") String entityType
+    ) throws ResponseException;
+
     ///////////////////////////////////////////////////////////////////
     ///// SETTLEMENTS API /////////////////////////////////////////////
 
