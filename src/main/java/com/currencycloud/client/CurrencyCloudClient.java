@@ -41,7 +41,7 @@ public class CurrencyCloudClient {
             "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
             Pattern.CASE_INSENSITIVE
     );
-    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/1.4.4";
+    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/1.5.1";
 
     private final CurrencyCloud api;
 
@@ -984,11 +984,18 @@ public class CurrencyCloudClient {
         );
     }
 
+    public PaymentAuthorisations authorisePayment(List<String> paymentIds) throws CurrencyCloudException {
+         return api.authorisePayment(
+                authToken,
+                userAgent,
+                paymentIds
+        );
+    }
+
     public Payment retrievePayment(String id) throws CurrencyCloudException {
         return api.retrievePayment(authToken, userAgent, id, getOnBehalfOf());
     }
 
-    /*TODO: is withDeleted a requried parameter? */
     public Payment updatePayment(Payment payment, @Nullable Payer payer) throws CurrencyCloudException {
         if (payer == null) {
             payer = Payer.create();
