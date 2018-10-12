@@ -2,10 +2,7 @@ package com.currencycloud.client;
 
 import co.freeside.betamax.Betamax;
 import co.freeside.betamax.MatchRule;
-import com.currencycloud.client.model.Payment;
-import com.currencycloud.client.model.PaymentAuthorisation;
-import com.currencycloud.client.model.PaymentAuthorisations;
-import com.currencycloud.client.model.PaymentSubmission;
+import com.currencycloud.client.model.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +38,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         payment.setAmount(new BigDecimal("788.44"));
         payment.setReason("Invoice");
         payment.setReference("REF-INV-1838");
+        payment.setUniqueRequestId("a20bc586-b7a9-4316-9daf-d4ede4c0d4ee");
 
         payment = client.createPayment(payment, null);
 
@@ -66,6 +64,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         assertThat(payment.getCreatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
         assertThat(payment.getUpdatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
         assertThat(payment.getPaymentGroupId(), is(nullValue()));
+        assertThat(payment.getUniqueRequestId(), equalTo("a20bc586-b7a9-4316-9daf-d4ede4c0d4ee"));
         assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
         assertThat(payment.getUltimateBeneficiaryName(), is(nullValue()));
         assertThat(payment.getPurposeCode(), is(nullValue()));
@@ -79,6 +78,118 @@ public class PaymentsTest extends BetamaxTestSupport {
         payment.setUltimateBeneficiaryName("Francesco Bianco");
 
         payment = client.updatePayment(payment, null);
+
+        assertThat(payment, notNullValue());
+        assertThat(payment.getId(), equalTo("778d2ba2-b2ec-4b39-b54c-0c3410525c97"));
+        assertThat(payment.getAmount(), equalTo(new BigDecimal("788.44")));
+        assertThat(payment.getBeneficiaryId(), equalTo("60fbe8d3-f7d0-4124-9077-93d09fb2186a"));
+        assertThat(payment.getCurrency(), equalTo("EUR"));
+        assertThat(payment.getReference(), equalTo("REF-INV-1838"));
+        assertThat(payment.getReason(), equalTo("Invoice"));
+        assertThat(payment.getStatus(), equalTo("ready_to_send"));
+        assertThat(payment.getCreatorContactId(), equalTo("a66ca63f-e668-47af-8bb9-74363240d781"));
+        assertThat(payment.getPaymentType(), equalTo("regular"));
+        assertThat(payment.getPaymentDate(), equalTo(parseDate("2018-01-01")));
+        assertThat(payment.getTransferredAt(), is(nullValue()));
+        assertThat(payment.getAuthorisationStepsRequired(), equalTo(0));
+        assertThat(payment.getLastUpdaterContactId(), equalTo("a66ca63f-e668-47af-8bb9-74363240d781"));
+        assertThat(payment.getShortReference(), equalTo("180925-BXRBZZ001"));
+        assertThat(payment.getConversionId(), is(nullValue()));
+        assertThat(payment.getFailureReason(), is(emptyString()));
+        assertThat(payment.getPayerId(), equalTo("68561f01-b5d8-4fad-9bcb-d1712a1bc0c8"));
+        assertThat(payment.getPayerDetailsSource(), equalTo("account"));
+        assertThat(payment.getCreatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
+        assertThat(payment.getUpdatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
+        assertThat(payment.getPaymentGroupId(), is(nullValue()));
+        assertThat(payment.getUniqueRequestId(), equalTo("a20bc586-b7a9-4316-9daf-d4ede4c0d4ee"));
+        assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
+        assertThat(payment.getUltimateBeneficiaryName(), equalTo("Francesco Bianco"));
+        assertThat(payment.getPurposeCode(), is(nullValue()));
+    }
+
+    @Test
+    @Betamax(tape = "can_find", match = {MatchRule.method, MatchRule.uri, MatchRule.body})
+    public void testCanFind() throws Exception {
+        Payments paymentsData = client.findPayments(null, null);
+        List<Payment> payments = paymentsData.getPayments();
+        Payment payment = payments.iterator().next();
+        Pagination pagination = paymentsData.getPagination();
+
+        assertThat(payments.size(), equalTo(pagination.getTotalEntries()));
+        assertThat(payment, notNullValue());
+        assertThat(payments.get(0).getId(), equalTo("778d2ba2-b2ec-4b39-b54c-0c3410525c97"));
+        assertThat(payments.get(1).getId(), equalTo("730a737e-d43e-4e75-809a-82a2f4cccaae"));
+        assertThat(payments.get(2).getId(), equalTo("ee6f48c0-69e7-4ccc-a49d-0899629fe9a0"));
+        assertThat(payment.getId(), equalTo("778d2ba2-b2ec-4b39-b54c-0c3410525c97"));
+        assertThat(payment.getAmount(), equalTo(new BigDecimal("788.44")));
+        assertThat(payment.getBeneficiaryId(), equalTo("60fbe8d3-f7d0-4124-9077-93d09fb2186a"));
+        assertThat(payment.getCurrency(), equalTo("EUR"));
+        assertThat(payment.getReference(), equalTo("REF-INV-1838"));
+        assertThat(payment.getReason(), equalTo("Invoice"));
+        assertThat(payment.getStatus(), equalTo("ready_to_send"));
+        assertThat(payment.getCreatorContactId(), equalTo("a66ca63f-e668-47af-8bb9-74363240d781"));
+        assertThat(payment.getPaymentType(), equalTo("regular"));
+        assertThat(payment.getPaymentDate(), equalTo(parseDate("2018-01-01")));
+        assertThat(payment.getTransferredAt(), is(nullValue()));
+        assertThat(payment.getAuthorisationStepsRequired(), equalTo(0));
+        assertThat(payment.getLastUpdaterContactId(), equalTo("a66ca63f-e668-47af-8bb9-74363240d781"));
+        assertThat(payment.getShortReference(), equalTo("180925-BXRBZZ001"));
+        assertThat(payment.getConversionId(), is(nullValue()));
+        assertThat(payment.getFailureReason(), is(emptyString()));
+        assertThat(payment.getPayerId(), equalTo("68561f01-b5d8-4fad-9bcb-d1712a1bc0c8"));
+        assertThat(payment.getPayerDetailsSource(), equalTo("account"));
+        assertThat(payment.getCreatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
+        assertThat(payment.getUpdatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
+        assertThat(payment.getPaymentGroupId(), is(nullValue()));
+        assertThat(payment.getUniqueRequestId(), equalTo("a20bc586-b7a9-4316-9daf-d4ede4c0d4ee"));
+        assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
+        assertThat(payment.getUltimateBeneficiaryName(), equalTo("Francesco Bianco"));
+        assertThat(payment.getPurposeCode(), is(nullValue()));
+        assertThat(pagination.getPerPage(), equalTo(25));
+        assertThat(pagination.getOrder(), equalTo("created_at"));
+        assertThat(pagination.getTotalEntries(), equalTo(3));
+        assertThat(pagination.getCurrentPage(), equalTo(1));
+        assertThat(pagination.getNextPage(), equalTo(-1));
+        assertThat(pagination.getPreviousPage(), equalTo(-1));
+    }
+
+    @Test
+    @Betamax(tape = "can_retrieve", match = {MatchRule.method, MatchRule.uri, MatchRule.body})
+    public void testCanRetrieve() throws Exception {
+        Payment payment = client.retrievePayment("778d2ba2-b2ec-4b39-b54c-0c3410525c97", null);
+
+        assertThat(payment, notNullValue());
+        assertThat(payment.getId(), equalTo("778d2ba2-b2ec-4b39-b54c-0c3410525c97"));
+        assertThat(payment.getAmount(), equalTo(new BigDecimal("788.44")));
+        assertThat(payment.getBeneficiaryId(), equalTo("60fbe8d3-f7d0-4124-9077-93d09fb2186a"));
+        assertThat(payment.getCurrency(), equalTo("EUR"));
+        assertThat(payment.getReference(), equalTo("REF-INV-1838"));
+        assertThat(payment.getReason(), equalTo("Invoice"));
+        assertThat(payment.getStatus(), equalTo("ready_to_send"));
+        assertThat(payment.getCreatorContactId(), equalTo("a66ca63f-e668-47af-8bb9-74363240d781"));
+        assertThat(payment.getPaymentType(), equalTo("regular"));
+        assertThat(payment.getPaymentDate(), equalTo(parseDate("2018-01-01")));
+        assertThat(payment.getTransferredAt(), is(nullValue()));
+        assertThat(payment.getAuthorisationStepsRequired(), equalTo(0));
+        assertThat(payment.getLastUpdaterContactId(), equalTo("a66ca63f-e668-47af-8bb9-74363240d781"));
+        assertThat(payment.getShortReference(), equalTo("180925-BXRBZZ001"));
+        assertThat(payment.getConversionId(), is(nullValue()));
+        assertThat(payment.getFailureReason(), is(emptyString()));
+        assertThat(payment.getPayerId(), equalTo("68561f01-b5d8-4fad-9bcb-d1712a1bc0c8"));
+        assertThat(payment.getPayerDetailsSource(), equalTo("account"));
+        assertThat(payment.getCreatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
+        assertThat(payment.getUpdatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
+        assertThat(payment.getPaymentGroupId(), is(nullValue()));
+        assertThat(payment.getUniqueRequestId(), equalTo("a20bc586-b7a9-4316-9daf-d4ede4c0d4ee"));
+        assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
+        assertThat(payment.getUltimateBeneficiaryName(), equalTo("Francesco Bianco"));
+        assertThat(payment.getPurposeCode(), is(nullValue()));
+    }
+
+    @Test
+    @Betamax(tape = "can_delete", match = {MatchRule.method, MatchRule.uri, MatchRule.body})
+    public void testCanDelete() throws Exception {
+        Payment payment = client.deletePayment("778d2ba2-b2ec-4b39-b54c-0c3410525c97");
 
         assertThat(payment, notNullValue());
         assertThat(payment.getId(), equalTo("778d2ba2-b2ec-4b39-b54c-0c3410525c97"));
