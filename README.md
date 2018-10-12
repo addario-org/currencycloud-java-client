@@ -217,7 +217,6 @@ Once a feature has been marked as deprecated, we no longer develop the code or i
 ```
 As of 1.0.3:
 ------------
-
 Beneficiary.createForUpdate and Beneficiary.createForValidate
 CurrencyCloudClient.findBalances(BigDecimal, BigDecimal, Date, Pagination) and corresponding CurrencyCloud.findBalances
 CurrencyCloudClient.findConversions(Conversion, Collection<String>, Date, Date, Date, Date, BigDecimal, BigDecimal, BigDecimal, BigDecimal, BigDecimal, BigDecimal, BigDecimal, BigDecimal, String) and corresponding CurrencyCloud.findConversions
@@ -230,7 +229,6 @@ CurrencyCloudClient.retrieveIbans(String, Pagination) and corresponding Currency
 
 As of 1.2.3:
 ------------
-
 Conversion.Conversion(String, String, String, Date, BigDecimal, String, BigDecimal, BigDecimal, String)
 Conversion.Conversion(String, String, String, String, String, String, String)
 Conversion.create(String, String, String)
@@ -245,7 +243,6 @@ Iban.create(String)
 
 As of 1.5.1:
 ------------
-
 CurrencyCloudClient.retrievePayment(String)
 ```
 
@@ -253,7 +250,7 @@ CurrencyCloudClient.retrievePayment(String)
 We actively support the latest version of the SDK. We support the immediate previous version on best-efforts basis. All other versions are no longer supported nor maintained.
 
 # Release History
-* [1.6.0] - Update Payment Purpose Code and add Payment tests
+* [1.6.0] - Update Payment Purpose Code, add Payment tests, fix Javadoc warnings and update Maven plugins
 * [1.5.1] - Add Payment Authorisation and Payment Purpose Code
 * [1.4.4] - Add Conversion Quote Cancel, Conversion Cancel, Conversion Date Change Quote, Conversion Date Change, Conversion Date Change History, Conversion Split Preview, Conversion Split, Conversion Split History and Conversion Profit and Loss
 * [1.3.0] - Add PaymentSubmission class and fix retrievePaymentSubmission
