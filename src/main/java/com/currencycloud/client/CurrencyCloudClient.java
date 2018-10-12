@@ -994,7 +994,7 @@ public class CurrencyCloudClient {
     }
 
     /**
-     * @deprecated as of 1.5.1; use {@link #retrievePayment(String, @Nullable Boolean)} instead.
+     * @deprecated as of 1.5.1; use {@link #retrievePayment(String, Boolean)} instead.
      * */
     public Payment retrievePayment(String id) throws CurrencyCloudException {
         return api.retrievePayment(authToken, userAgent, id, null, getOnBehalfOf());
