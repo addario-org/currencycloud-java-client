@@ -1637,6 +1637,7 @@ public class CurrencyCloudClient {
      * @throws com.currencycloud.client.CurrencyCloudClient.NoChangeException if the entity was dirty-checked
      * but there were no changes.
      */
+    @SuppressWarnings("unchecked")
     static <E extends Entity> E wrapIfDirty(E entity, Class<E> entityClass) throws NoChangeException {
         if (entity != null) {
             Map<String, Object> values = getDirtyProperties(entity);
