@@ -181,7 +181,7 @@ public class Settlement implements Entity {
     public String toString() {
         return String.format("{\"id\":\"%s\", \"shortReference\":\"%s\", \"status\"\"%s\", \"conversionIds\":\"%s\", \"entries\":[\"%s\"], \"createdAt\":%s, \"updatedAt\":\"%s\", \"releasedAt\":\"%s\"}",
                 id, shortReference, status, conversionIds, entries, createdAt, updatedAt, releasedAt);
-        /*ToDo: Replace toString hack with Map<String, Entry> deserialization */
+        /* ToDo: Replace toString hack with Map<String, Entry> deserialization */
     }
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
