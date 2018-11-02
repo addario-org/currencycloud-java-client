@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -297,6 +298,7 @@ public class PaymentReport implements Entity {
     public String toString() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX"));
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("shortReference", shortReference);
@@ -426,6 +428,7 @@ public class PaymentReport implements Entity {
         public String toString() {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX"));
             Map<String, Object> map = new HashMap<>();
             map.put("description", description);
             map.put("currency", currency);
