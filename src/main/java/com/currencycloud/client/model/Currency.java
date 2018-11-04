@@ -19,6 +19,8 @@ public class Currency {
     private Integer decimalPlaces;
     private String name;
     private Boolean onlineTrading;
+    private Boolean canBuy;
+    private Boolean canSell;
 
     public String getCode() {
         return code;
@@ -36,6 +38,14 @@ public class Currency {
         return onlineTrading;
     }
 
+    public Boolean getCanBuy() {
+        return canBuy;
+    }
+
+    public Boolean getCanSell() {
+        return canSell;
+    }
+
     @Override
     public String toString() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -46,6 +56,8 @@ public class Currency {
         map.put("decimalPlaces", decimalPlaces);
         map.put("name", name);
         map.put("onlineTrading", onlineTrading);
+        map.put("canBuy", canBuy);
+        map.put("canSell", canSell);
 
         try {
             return objectMapper.writeValueAsString(map);
