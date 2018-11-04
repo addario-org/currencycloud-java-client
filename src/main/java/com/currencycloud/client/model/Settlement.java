@@ -180,7 +180,6 @@ public class Settlement implements Entity {
         } catch (JsonProcessingException e) {
             return String.format("{\"error\": \"%s\"}", e.getMessage());
         }
-        /* ToDo: Replace toString hack with Map<String, Entry> deserialization */
     }
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
