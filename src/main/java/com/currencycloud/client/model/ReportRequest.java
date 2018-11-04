@@ -208,11 +208,11 @@ public class ReportRequest implements Entity {
         try {
             return objectMapper.writeValueAsString(map);
         } catch (JsonProcessingException e) {
-            return "[]";
+            return String.format("{\"error\": \"%s\"}", e.getMessage());
         }
     }
 
-    /* ToDo: This is a quick and dirty way to handle SearchParams. To be improved in a future release */
+    /* ToDo: Not the most efficient way to handle SearchParams. To be improved in a future release */
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class SearchParams {
@@ -441,7 +441,7 @@ public class ReportRequest implements Entity {
             try {
                 return objectMapper.writeValueAsString(map);
             } catch (JsonProcessingException e) {
-                return "[]";
+                return String.format("{\"error\": \"%s\"}", e.getMessage());
             }
         }
     }
