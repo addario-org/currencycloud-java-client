@@ -244,13 +244,20 @@ Iban.create(String)
 As of 1.5.1:
 ------------
 CurrencyCloudClient.retrievePayment(String)
+
+As of 1.7.4:
+------------
+CurrencyCloudClient.retrieveSubAccountsIban(String, Pagination) and corresponding CurrencyCloud.retrieveSubAccountsIban
+CurrencyCloudClient.findSubAccountsIbans(Iban, Pagination) and corresponding CurrencyCloud.findSubAccountsIbans
+CurrencyCloudClient.retrieveSubAccountsVirtualAccount(String, Pagination) and corresponding CurrencyCloud.retrieveSubAccountsVirtualAccount
+CurrencyCloudClient.findSubAccountsVirtualAccounts(VirtualAccount, Pagination) and corresponding CurrencyCloud.findSubAccountsVirtualAccounts
 ```
 
 # Support
 We actively support the latest version of the SDK. We support the immediate previous version on best-efforts basis. All other versions are no longer supported nor maintained.
 
 # Release History
-* [1.7.4] - Add Reporting endpoints, remove json-smart dependency, change toString implementation 
+* [1.7.4] - Add Reporting paths and operations, remove json-smart dependency, change toString implementation, add missing Currency fields, update IBAN and VirtualAccounts, and deprecate obsolete IBAN and VirtualAccounts methods
 * [1.6.1] - Add support for JDK 11
 * [1.6.0] - Update Payment Purpose Code, add Payment tests, fix Javadoc warnings and update Maven plugins
 * [1.5.1] - Add Payment Authorisation and Payment Purpose Code
