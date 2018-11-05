@@ -26,6 +26,7 @@ public class VirtualAccount implements Entity {
     private String routingCode;
     private Date createdAt;
     private Date updatedAt;
+    private String scope;
 
     protected VirtualAccount() { }
 
@@ -112,6 +113,14 @@ public class VirtualAccount implements Entity {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 
     @Override

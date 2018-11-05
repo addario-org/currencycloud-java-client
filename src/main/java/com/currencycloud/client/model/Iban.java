@@ -27,6 +27,7 @@ public class Iban implements Entity {
     private String bicSwift;
     private Date createdAt;
     private Date updatedAt;
+    private String scope;
 
     protected Iban() { }
 
@@ -137,6 +138,14 @@ public class Iban implements Entity {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 
     @Override
