@@ -62,7 +62,7 @@ public class VirtualAccountsTest extends BetamaxTestSupport {
         Pagination paginationCondition = new Pagination();
         paginationCondition.setOrder("created_at");
         paginationCondition.setOrderAscDesc(Pagination.SortOrder.desc);
-        VirtualAccounts virtualAccountsData = client.findVirtualAccounts(null, paginationCondition);
+        VirtualAccounts virtualAccountsData = client.retrieveVirtualAccount(paginationCondition);
         List<VirtualAccount> virtualAccounts = virtualAccountsData.getVirtualAccounts();
         Pagination pagination = virtualAccountsData.getPagination();
 

@@ -41,7 +41,7 @@ public class CurrencyCloudClient {
             "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
             Pattern.CASE_INSENSITIVE
     );
-    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/1.6.0";
+    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/1.7.4";
 
     private final CurrencyCloud api;
 
@@ -881,8 +881,9 @@ public class CurrencyCloudClient {
         return api.findIbans(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
+                iban.getScope(),
                 iban.getCurrency(),
+                iban.getAccountId(),
                 pagination.getPage(),
                 pagination.getPerPage(),
                 pagination.getOrder(),
@@ -890,6 +891,10 @@ public class CurrencyCloudClient {
         );
     }
 
+    /**
+     * @deprecated as of 1.7.4; use generic {@link #findIbans(Iban, Pagination)} instead.
+     * */
+    @Deprecated
     public Ibans retrieveSubAccountsIban(String id, Pagination pagination) throws CurrencyCloudException {
         if (pagination == null) {
             pagination = Pagination.builder().build();
@@ -907,6 +912,7 @@ public class CurrencyCloudClient {
     /**
      * @deprecated as of 1.0.3; use generic {@link #findSubAccountsIbans(Iban, Pagination)} instead.
      * */
+    @Deprecated
     public Ibans findSubAccountsIbans(@Nullable String currency, @Nullable Pagination pagination) throws CurrencyCloudException {
         if (pagination == null) {
             pagination = Pagination.builder().build();
@@ -922,11 +928,9 @@ public class CurrencyCloudClient {
     }
 
     /**
-     * @param iban        Non-null properties will be used for querying. Null values will be ignored.
-     * @param pagination  pagination settings
-     * @return            The paginated Ibans search result
-     * @throws            CurrencyCloudException When an error occurs
-     */
+     * @deprecated as of 1.7.4; use generic {@link #findIbans(Iban, Pagination)} instead.
+     * */
+    @Deprecated
     public Ibans findSubAccountsIbans(@Nullable Iban iban, @Nullable Pagination pagination) throws CurrencyCloudException {
         if (pagination == null) {
             pagination = Pagination.builder().build();
@@ -1563,7 +1567,8 @@ public class CurrencyCloudClient {
         return api.findVirtualAccounts(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
+                virtualAccount.getScope(),
+                virtualAccount.getAccountId(),
                 pagination.getPage(),
                 pagination.getPerPage(),
                 pagination.getOrder(),
@@ -1571,6 +1576,23 @@ public class CurrencyCloudClient {
         );
     }
 
+    public VirtualAccounts retrieveVirtualAccount(@Nullable Pagination pagination) throws CurrencyCloudException {
+        if (pagination == null) {
+            pagination = Pagination.builder().build();
+        }
+        return api.retrieveVirtualAccount(
+                authToken,
+                userAgent,
+                pagination.getPage(),
+                pagination.getPerPage(),
+                pagination.getOrder(),
+                pagination.getOrderAscDesc());
+    }
+
+    /**
+     * @deprecated as of 1.7.4; use generic {@link #findVirtualAccounts(VirtualAccount, Pagination)} instead.
+     * */
+    @Deprecated
     public VirtualAccounts retrieveSubAccountsVirtualAccount(String id, Pagination pagination) throws CurrencyCloudException {
         if (pagination == null) {
             pagination = Pagination.builder().build();
@@ -1586,11 +1608,9 @@ public class CurrencyCloudClient {
     }
 
     /**
-     * @param virtualAccount Non-null properties will be used for querying. Null values will be ignored.
-     * @param pagination     pagination settings
-     * @return               The paginated Ibans search result
-     * @throws               CurrencyCloudException When an error occurs
-     */
+     * @deprecated as of 1.7.4; use generic {@link #findVirtualAccounts(VirtualAccount, Pagination)} instead.
+     * */
+    @Deprecated
     public VirtualAccounts findSubAccountsVirtualAccounts(@Nullable VirtualAccount virtualAccount, @Nullable Pagination pagination) throws CurrencyCloudException {
         if (pagination == null) {
             pagination = Pagination.builder().build();
