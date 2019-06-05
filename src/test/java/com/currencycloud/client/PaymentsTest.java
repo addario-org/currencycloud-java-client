@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -68,6 +69,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
         assertThat(payment.getUltimateBeneficiaryName(), is(nullValue()));
         assertThat(payment.getPurposeCode(), is(nullValue()));
+        assertThat(payment.getChargeType(), equalTo("ours"));
     }
 
     @Test
@@ -76,6 +78,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         Payment payment = Payment.create();
         payment.setId("778d2ba2-b2ec-4b39-b54c-0c3410525c97");
         payment.setUltimateBeneficiaryName("Francesco Bianco");
+        payment.setChargeType("shared");
 
         payment = client.updatePayment(payment, null);
 
@@ -105,6 +108,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
         assertThat(payment.getUltimateBeneficiaryName(), equalTo("Francesco Bianco"));
         assertThat(payment.getPurposeCode(), is(nullValue()));
+        assertThat(payment.getChargeType(), equalTo("shared"));
     }
 
     @Test
@@ -145,6 +149,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
         assertThat(payment.getUltimateBeneficiaryName(), equalTo("Francesco Bianco"));
         assertThat(payment.getPurposeCode(), is(nullValue()));
+        assertThat(payment.getChargeType(), equalTo("ours"));
         assertThat(pagination.getPerPage(), equalTo(25));
         assertThat(pagination.getOrder(), equalTo("created_at"));
         assertThat(pagination.getTotalEntries(), equalTo(3));
@@ -184,6 +189,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
         assertThat(payment.getUltimateBeneficiaryName(), equalTo("Francesco Bianco"));
         assertThat(payment.getPurposeCode(), is(nullValue()));
+        assertThat(payment.getChargeType(), equalTo("ours"));
     }
 
     @Test
@@ -216,6 +222,7 @@ public class PaymentsTest extends BetamaxTestSupport {
         assertThat(payment.getFailureReturnedAmount(), equalTo(new BigDecimal("0.00")));
         assertThat(payment.getUltimateBeneficiaryName(), equalTo("Francesco Bianco"));
         assertThat(payment.getPurposeCode(), is(nullValue()));
+        assertThat(payment.getChargeType(), equalTo("ours"));
     }
 
     @Test
@@ -267,5 +274,22 @@ public class PaymentsTest extends BetamaxTestSupport {
         assertThat(confirmation.getCreatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
         assertThat(confirmation.getUpdatedAt(), equalTo(parseDateTime("2018-01-01T12:34:56+00:00")));
         assertThat(confirmation.getExpiresAt(), equalTo(parseDateTime("2018-01-03T00:00:00+00:00")));
+    }
+
+    @Test
+    @Betamax(tape = "can_get_payment_delivery_date", match = {MatchRule.method, MatchRule.uri, MatchRule.body})
+    public void testGetPaymentDeliveryDate() throws Exception {
+        final Date paymentDate = parseDate("2019-05-29");
+        final String paymentType = "regular";
+        final String currency = "GBP";
+        final String bankCountry = "GB";
+        final PaymentDeliveryDate paymentDeliveryDate = client.getPaymentDeliveryDate(paymentDate, paymentType, currency, bankCountry);
+        assertThat(paymentDeliveryDate, notNullValue());
+        assertThat(paymentDeliveryDate.getPaymentDate(), equalTo(paymentDate));
+        assertThat(paymentDeliveryDate.getPaymentType(), equalTo(paymentType));
+        assertThat(paymentDeliveryDate.getCurrency(), equalTo(currency));
+        assertThat(paymentDeliveryDate.getBankCountry(), equalTo(bankCountry));
+        assertThat(paymentDeliveryDate.getPaymentDeliveryDate(), equalTo(parseDateTime("2019-05-29T00:00:00+00:00")));
+        assertThat(paymentDeliveryDate.getPaymentCutoffTime(), equalTo(parseDateTime("2019-05-29T14:30:00+00:00")));
     }
 }
