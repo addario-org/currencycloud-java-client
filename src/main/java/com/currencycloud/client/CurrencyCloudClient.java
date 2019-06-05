@@ -41,7 +41,7 @@ public class CurrencyCloudClient {
             "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
             Pattern.CASE_INSENSITIVE
     );
-    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/2.0.0";
+    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/3.2.2";
 
     private final CurrencyCloud api;
 
@@ -247,6 +247,25 @@ public class CurrencyCloudClient {
         return api.currentAccount(authToken, userAgent);
     }
 
+    public AccountPaymentChargesSettings retrieveAccountsPaymentChargeSettings(final String accountId) throws CurrencyCloudException {
+        return api.retrieveAccountsPaymentChargeSettings(
+                authToken,
+                userAgent,
+                accountId
+        );
+    }
+
+    public AccountPaymentChargesSetting updateAccountsPaymentChargeSetting(final AccountPaymentChargesSetting chargeSettings) throws CurrencyCloudException {
+        return api.updateAccountsPaymentChargeSettings(
+                authToken,
+                userAgent,
+                chargeSettings.getAccountId(),
+                chargeSettings.getChargeSettingsId(),
+                chargeSettings.isEnabled(),
+                chargeSettings.isDefault()
+        );
+    }
+
     ///////////////////////////////////////////////////////////////////
     ///// BALANCES ////////////////////////////////////////////////////
 
@@ -356,6 +375,7 @@ public class CurrencyCloudClient {
                 dateOnly(beneficiary.getBeneficiaryDateOfBirth()),
                 beneficiary.getBeneficiaryIdentificationType(),
                 beneficiary.getBeneficiaryIdentificationValue(),
+                beneficiary.getBeneficiaryExternalReference(),
                 beneficiary.getPaymentTypes()
         );
     }
@@ -403,6 +423,7 @@ public class CurrencyCloudClient {
                 dateOnly(beneficiary.getBeneficiaryDateOfBirth()),
                 beneficiary.getBeneficiaryIdentificationType(),
                 beneficiary.getBeneficiaryIdentificationValue(),
+                beneficiary.getBeneficiaryExternalReference(),
                 beneficiary.getPaymentTypes()
         );
     }
@@ -447,6 +468,7 @@ public class CurrencyCloudClient {
                 beneficiary.getBeneficiaryPostcode(),
                 beneficiary.getBeneficiaryStateOrProvince(),
                 dateOnly(beneficiary.getBeneficiaryDateOfBirth()),
+                beneficiary.getBeneficiaryExternalReference(),
                 beneficiary.getScope(),
                 pagination.getPage(),
                 pagination.getPerPage(),
@@ -629,7 +651,6 @@ public class CurrencyCloudClient {
         return api.cancelConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 conversion.getId(),
                 conversion.getNotes());
     }
@@ -638,7 +659,6 @@ public class CurrencyCloudClient {
         return api.quoteCancelConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 conversion.getId());
     }
 
@@ -646,7 +666,6 @@ public class CurrencyCloudClient {
         return api.quoteChangeDateConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 conversionDateChange.getId(),
                 conversionDateChange.getNewSettlementDate());
     }
@@ -655,7 +674,6 @@ public class CurrencyCloudClient {
         return api.changeDateConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 conversionDateChange.getId(),
                 conversionDateChange.getNewSettlementDate());
     }
@@ -672,7 +690,6 @@ public class CurrencyCloudClient {
         return api.previewSplitConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 conversion.getId(),
                 conversion.getAmount());
     }
@@ -681,7 +698,6 @@ public class CurrencyCloudClient {
         return api.splitConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 conversion.getId(),
                 conversion.getAmount());
     }
@@ -690,7 +706,6 @@ public class CurrencyCloudClient {
         return api.historySplitConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 conversion.getId());
     }
 
@@ -704,7 +719,6 @@ public class CurrencyCloudClient {
         return api.retrieveProfitAndLossConversion(
                 authToken,
                 userAgent,
-                getOnBehalfOf(),
                 profitAndLoss.getAccountId(),
                 profitAndLoss.getContactId(),
                 profitAndLoss.getConversionId(),
@@ -751,42 +765,6 @@ public class CurrencyCloudClient {
         );
     }
 
-    /**
-     * @deprecated as of 1.7.4; use generic {@link #findIbans(Iban, Pagination)} instead.
-     * */
-    @Deprecated
-    public Ibans retrieveSubAccountsIban(String id, Pagination pagination) throws CurrencyCloudException {
-        if (pagination == null) {
-            pagination = Pagination.builder().build();
-        }
-        return api.retrieveSubAccountsIban(
-                authToken,
-                userAgent,
-                id,
-                pagination.getPage(),
-                pagination.getPerPage(),
-                pagination.getOrder(),
-                pagination.getOrderAscDesc());
-    }
-
-    /**
-     * @deprecated as of 1.7.4; use generic {@link #findIbans(Iban, Pagination)} instead.
-     * */
-    @Deprecated
-    public Ibans findSubAccountsIbans(@Nullable Iban iban, @Nullable Pagination pagination) throws CurrencyCloudException {
-        if (pagination == null) {
-            pagination = Pagination.builder().build();
-        }
-        return api.findSubAccountsIbans(
-                authToken,
-                userAgent,
-                iban.getCurrency(),
-                pagination.getPage(),
-                pagination.getPerPage(),
-                pagination.getOrder(),
-                pagination.getOrderAscDesc());
-    }
-
     ///////////////////////////////////////////////////////////////////
     ///// PAYERS ///////////////////////////////////////////////////////
 
@@ -827,7 +805,8 @@ public class CurrencyCloudClient {
                 payer.getIdentificationValue(),
                 payment.getUniqueRequestId(),
                 payment.getUltimateBeneficiaryName(),
-                payment.getPurposeCode()
+                payment.getPurposeCode(),
+                payment.getChargeType()
         );
     }
 
@@ -880,7 +859,8 @@ public class CurrencyCloudClient {
                 payer.getIdentificationValue(),
                 payment.getPayerDetailsSource(),
                 payment.getUltimateBeneficiaryName(),
-                payment.getPurposeCode()
+                payment.getPurposeCode(),
+                payment.getChargeType()
         );
     }
 
@@ -924,6 +904,7 @@ public class CurrencyCloudClient {
                 payment.getScope(),
                 payment.getBulkUploadId(),
                 payment.getPurposeCode(),
+                payment.getChargeType(),
                 pagination.getPage(),
                 pagination.getPerPage(),
                 pagination.getOrder(),
@@ -955,6 +936,16 @@ public class CurrencyCloudClient {
                 userAgent,
                 id,
                 getOnBehalfOf());
+    }
+
+    public PaymentDeliveryDate getPaymentDeliveryDate(Date paymentDate, String paymentType,String currency, String bankCountry) throws CurrencyCloudException {
+        return api.getPaymentDeliveryDate(
+                authToken,
+                userAgent,
+                dateOnly(paymentDate),
+                paymentType,
+                currency,
+                bankCountry);
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -1085,6 +1076,9 @@ public class CurrencyCloudClient {
     ///////////////////////////////////////////////////////////////////
     ///// REFERENCE ///////////////////////////////////////////////////
 
+    public BankDetails bankDetails(String identifierType, String identifierValue) throws CurrencyCloudException {
+        return api.bankDetails(authToken, userAgent, identifierType, identifierValue);
+    }
     public List<Map<String, String>> beneficiaryRequiredDetails(@Nullable String currency, @Nullable String bankAccountCountry, @Nullable String beneficiaryCountry) throws CurrencyCloudException {
         return api.beneficiaryRequiredDetails(authToken, userAgent, currency, bankAccountCountry, beneficiaryCountry).getDetails();
     }
@@ -1126,13 +1120,6 @@ public class CurrencyCloudClient {
 
     ///////////////////////////////////////////////////////////////////
     ///// SETTLEMENTS /////////////////////////////////////////////////
-
-    /**
-     * @deprecated as of 1.2.3; use {@link #createSettlement(Settlement)} instead.
-     * */
-    public Settlement createSettlement() throws CurrencyCloudException {
-        return api.createSettlement(authToken, userAgent, getOnBehalfOf());
-    }
 
     public Settlement createSettlement(Settlement settlement) throws CurrencyCloudException {
         return api.createSettlement(authToken, userAgent, getOnBehalfOf(), settlement.getType());
@@ -1331,54 +1318,6 @@ public class CurrencyCloudClient {
                 pagination.getOrder(),
                 pagination.getOrderAscDesc()
         );
-    }
-
-    public VirtualAccounts retrieveVirtualAccount(@Nullable Pagination pagination) throws CurrencyCloudException {
-        if (pagination == null) {
-            pagination = Pagination.builder().build();
-        }
-        return api.retrieveVirtualAccount(
-                authToken,
-                userAgent,
-                pagination.getPage(),
-                pagination.getPerPage(),
-                pagination.getOrder(),
-                pagination.getOrderAscDesc());
-    }
-
-    /**
-     * @deprecated as of 1.7.4; use generic {@link #findVirtualAccounts(VirtualAccount, Pagination)} instead.
-     * */
-    @Deprecated
-    public VirtualAccounts retrieveSubAccountsVirtualAccount(String id, Pagination pagination) throws CurrencyCloudException {
-        if (pagination == null) {
-            pagination = Pagination.builder().build();
-        }
-        return api.retrieveSubAccountsVirtualAccount(
-                authToken,
-                userAgent,
-                id,
-                pagination.getPage(),
-                pagination.getPerPage(),
-                pagination.getOrder(),
-                pagination.getOrderAscDesc());
-    }
-
-    /**
-     * @deprecated as of 1.7.4; use generic {@link #findVirtualAccounts(VirtualAccount, Pagination)} instead.
-     * */
-    @Deprecated
-    public VirtualAccounts findSubAccountsVirtualAccounts(@Nullable VirtualAccount virtualAccount, @Nullable Pagination pagination) throws CurrencyCloudException {
-        if (pagination == null) {
-            pagination = Pagination.builder().build();
-        }
-        return api.findSubAccountsVirtualAccounts(
-                authToken,
-                userAgent,
-                pagination.getPage(),
-                pagination.getPerPage(),
-                pagination.getOrder(),
-                pagination.getOrderAscDesc());
     }
 
     ///////////////////////////////////////////////////////////////////
