@@ -12,7 +12,7 @@
         <appender-ref ref="CONSOLE_APPENDER"/>
     </root>
     <!-- Level for com.currencycloud.* classes -->
-    <logger name="com.currencycloud" level="TRACE"/>
+    <logger name="com.currencycloud" level="DEBUG"/>
     <!-- Level for si.mazi.rescu.* classes -->
-    <logger name="si.mazi.rescu" level="TRACE"/>
+    <logger name="si.mazi.rescu" level="DEBUG"/>
 </configuration>
