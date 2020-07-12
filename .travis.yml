@@ -1,5 +1,4 @@
 language: java
-
 matrix:
   include:
   - jdk: oraclejdk8
@@ -16,7 +15,6 @@ matrix:
   - jdk: openjdk13
   - jdk: oraclejdk14
   - jdk: openjdk14
-
   allow_failures:
   - jdk: oraclejdk8
   - jdk: oraclejdk9
@@ -25,8 +23,9 @@ matrix:
   - jdk: oraclejdk12
   - jdk: oraclejdk13
   - jdk: oraclejdk14
-
 script: mvn clean install
-
 after_success:
-  - ./after-success.sh
+- "./after-success.sh"
+notifications:
+  slack:
+    secure: MgtxV9nExIJQyVV4MgCob1ggyfuZVPJ0oAD21wt95vnTiOpujIjT16gsAsCmF4a/V46YwS2FMONaRtZGSihDB56sWhyyPNRnVXrkcRihHrP/ec7gd/ivqwgCtaGDSX/7ct9+r2cgMCCN19W+BWEQC28noWO7WI59RRdxJU1OrIb8NWd/cKgW/VgH9Kwv0P/lHTHnSvCn5IBee+EejUaAAlvecJPC/TqVSb9UqwkY6+EkvqRh4PcptPXNxQL76sEHmty9E+vYMn8lAWghIMVOHqpVRW/vC9GM7OXltBrCPjzn3b86c64eZdMl7hzzMeAFQEPijhkgx9R0YcOpSaXjgvzoeVsaR8L/hqpK8OwcwE8AyBHDnG1PbDjB71xO+J9cUFWev4inOCRzitmiW+ccb8jf7LostBY43r7HzwoBfQmuejt8nusPJjaq1p7DyX8nidzUta+UGIjQnGzHA1Gq020QpG6Uw+IMgRSlEj6shOBf4aXH0w4GjzWGl5Wxvw9ADbKy1LNBiu95s2lIHejlkPHaLaM7NDy5FkDFcL4Iec+ZeW480wlk5ckW8iW6DTxaFvVhuf5w/Yum5v8sj1xdVmlq4ZALgvY9D2CIbvLNpVZqqMzVh83uCDLkjp12u1SuFiNgxQui9HGxHwUiW7twnjEqDgg6uqsaXv6yVqYgYK8=
