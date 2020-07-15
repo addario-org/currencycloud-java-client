@@ -18,6 +18,8 @@ import si.mazi.rescu.serialization.jackson.DefaultJacksonObjectMapperFactory;
 import si.mazi.rescu.serialization.jackson.JacksonObjectMapperFactory;
 
 import javax.annotation.Nullable;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.HeaderParam;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -41,7 +43,7 @@ public class CurrencyCloudClient {
             "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
             Pattern.CASE_INSENSITIVE
     );
-    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/3.2.2";
+    private static final String userAgent = "CurrencyCloudSDK/2.0 Java/3.6.1";
 
     private final CurrencyCloud api;
 
@@ -302,6 +304,16 @@ public class CurrencyCloudClient {
                 authToken,
                 userAgent,
                 currency,
+                getOnBehalfOf()
+        );
+    }
+
+    public MarginBalanceTopUp topUpMarginBalance(final String currency,final BigDecimal amount) throws CurrencyCloudException {
+        return api.topUpMarginBalance(
+                authToken,
+                userAgent,
+                currency,
+                amount,
                 getOnBehalfOf()
         );
     }
@@ -588,7 +600,8 @@ public class CurrencyCloudClient {
                 conversion.getClientBuyAmount(),
                 conversion.getClientSellAmount(),
                 conversion.getReason(),
-                conversion.getUniqueRequestId()
+                conversion.getUniqueRequestId(),
+                conversion.getConversionDatePreference()
         );
     }
 
@@ -737,6 +750,35 @@ public class CurrencyCloudClient {
     }
 
     ///////////////////////////////////////////////////////////////////
+    ///// FUNDING ///////////////////////////////////////////////////////
+
+    /**
+     * @param currency    Current of funding Account.
+     * @param accountId   Id of Account which the funding Account applies to.
+     * @param paymentType Type of payments funding account is used for.
+     * @param pagination  pagination settings
+     * @return            The paginated Accounts search result
+     * @throws            CurrencyCloudException When an error occurs
+     */
+    public FundingAccounts findFundingAccounts(String currency, @Nullable String accountId, @Nullable String paymentType,
+                                               @Nullable Pagination pagination) throws CurrencyCloudException {
+        if (pagination == null) {
+            pagination = Pagination.builder().build();
+        }
+        return api.findFundingAccounts(
+                authToken,
+                userAgent,
+                currency,
+                accountId,
+                paymentType,
+                pagination.getPage(),
+                pagination.getPerPage(),
+                pagination.getOrder(),
+                pagination.getOrderAscDesc()
+        );
+    }
+
+    ///////////////////////////////////////////////////////////////////
     ///// IBANS ///////////////////////////////////////////////////////
 
     /**
@@ -806,7 +848,9 @@ public class CurrencyCloudClient {
                 payment.getUniqueRequestId(),
                 payment.getUltimateBeneficiaryName(),
                 payment.getPurposeCode(),
-                payment.getChargeType()
+                payment.getChargeType(),
+                payment.getFeeAmount(),
+                payment.getFeeCurrency()
         );
     }
 
@@ -860,7 +904,9 @@ public class CurrencyCloudClient {
                 payment.getPayerDetailsSource(),
                 payment.getUltimateBeneficiaryName(),
                 payment.getPurposeCode(),
-                payment.getChargeType()
+                payment.getChargeType(),
+                payment.getFeeAmount(),
+                payment.getFeeCurrency()
         );
     }
 
@@ -905,6 +951,8 @@ public class CurrencyCloudClient {
                 payment.getBulkUploadId(),
                 payment.getPurposeCode(),
                 payment.getChargeType(),
+                payment.getFeeAmount(),
+                payment.getFeeCurrency(),
                 pagination.getPage(),
                 pagination.getPerPage(),
                 pagination.getOrder(),
@@ -948,6 +996,16 @@ public class CurrencyCloudClient {
                 bankCountry);
     }
 
+    public QuotePaymentFee getQuotePaymentFee(@Nullable String accountId, String paymentCurrency, String paymentDestinationCountry, String paymentType, @Nullable String chargeType) throws CurrencyCloudException {
+        return api.getQuotePaymentFee(
+                authToken,
+                userAgent,
+                accountId,
+                paymentCurrency,
+                paymentDestinationCountry,
+                paymentType,
+                chargeType);
+    }
     ///////////////////////////////////////////////////////////////////
     ///// RATES ///////////////////////////////////////////////////////
 
@@ -961,7 +1019,7 @@ public class CurrencyCloudClient {
         );
     }
 
-    public DetailedRate detailedRates(String buyCurrency, String sellCurrency, String fixedSide, BigDecimal amount, @Nullable Date conversionDate) throws CurrencyCloudException {
+    public DetailedRate detailedRates(String buyCurrency, String sellCurrency, String fixedSide, BigDecimal amount, @Nullable Date conversionDate, @Nullable String conversionDatePreference) throws CurrencyCloudException {
         return api.detailedRates(
                 authToken,
                 userAgent,
@@ -970,7 +1028,8 @@ public class CurrencyCloudClient {
                 fixedSide,
                 amount,
                 getOnBehalfOf(),
-                dateOnly(conversionDate)
+                dateOnly(conversionDate),
+                conversionDatePreference
         );
     }
 
@@ -1105,6 +1164,10 @@ public class CurrencyCloudClient {
 
     public List<PaymentPurposeCode> paymentPurposeCodes(String currency, String bankAccountCountry, @Nullable String entityType) throws CurrencyCloudException {
         return api.paymentPurposeCodes(authToken, userAgent, currency, bankAccountCountry, entityType).getPurposeCodes();
+    }
+
+    public List<PaymentFeeRule> paymentFeeRules(@Nullable String accountId, @Nullable String paymentType, @Nullable String chargeType) throws CurrencyCloudException {
+        return api.paymentFeeRules(authToken, userAgent, accountId, paymentType, chargeType).getPaymentFeeRules();
     }
 
     ///////////////////////////////////////////////////////////////////
