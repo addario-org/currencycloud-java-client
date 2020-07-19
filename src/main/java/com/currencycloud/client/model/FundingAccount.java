@@ -35,6 +35,18 @@ public class FundingAccount implements Entity {
     protected FundingAccount() {
     }
 
+    private FundingAccount(String currency) {
+        this.currency = currency;
+    }
+
+    public static FundingAccount create() {
+        return new FundingAccount();
+    }
+
+    public static FundingAccount create(String currency) {
+        return new FundingAccount(currency);
+    }
+
     @Override
     public String getId() {
         return id;
