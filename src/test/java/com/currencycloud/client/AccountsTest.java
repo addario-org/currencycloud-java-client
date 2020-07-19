@@ -229,7 +229,7 @@ public class AccountsTest extends BetamaxTestSupport {
     @Test
     @Betamax(tape = "can_update_accounts_payment_charge_settings", match = {MatchRule.method, MatchRule.uri, MatchRule.body})
     public void testCanUpdateAccountsPaymentChargeSettings() throws Exception {
-        final AccountPaymentChargesSetting setting = new  AccountPaymentChargesSetting();
+        final AccountPaymentChargesSetting setting = AccountPaymentChargesSetting.create();
         setting.setAccountId("e277c9f9-679f-454f-8367-274b3ff977ff");
         setting.setChargeSettingsId("090baf6d-5cfd-4bfd-9b7b-ad3f8a310995");
         setting.setChargeType("ours");
