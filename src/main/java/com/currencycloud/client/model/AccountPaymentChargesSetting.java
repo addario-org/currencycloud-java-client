@@ -24,6 +24,40 @@ public class AccountPaymentChargesSetting {
     @JsonProperty("default")
     private boolean isDefault;
 
+    protected AccountPaymentChargesSetting() { }
+
+    private AccountPaymentChargesSetting(String accountId) {
+        this.accountId = accountId;
+    }
+
+    private AccountPaymentChargesSetting(String accountId, String chargeSettingsId) {
+        this.accountId = accountId;
+        this.chargeSettingsId = chargeSettingsId;
+    }
+
+    private AccountPaymentChargesSetting(String accountId, String chargeSettingsId, boolean enabled, boolean isDefault) {
+        this.accountId = accountId;
+        this.chargeSettingsId = chargeSettingsId;
+        this.enabled = enabled;
+        this.isDefault = isDefault;
+    }
+
+    public static AccountPaymentChargesSetting create() {
+        return new AccountPaymentChargesSetting();
+    }
+
+    public static AccountPaymentChargesSetting create(String accountId) {
+        return new AccountPaymentChargesSetting(accountId);
+    }
+
+    public static AccountPaymentChargesSetting create(String accountId, String chargeSettingsId) {
+        return new AccountPaymentChargesSetting(accountId, chargeSettingsId);
+    }
+
+    public static AccountPaymentChargesSetting create(String accountId, String chargeSettingsId, boolean enabled, boolean isDefault) {
+        return new AccountPaymentChargesSetting(accountId, chargeSettingsId, enabled, isDefault);
+    }
+
     public String getChargeSettingsId() {
         return chargeSettingsId;
     }
