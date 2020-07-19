@@ -239,7 +239,7 @@ Once a feature has been marked as deprecated, we no longer develop the code or i
 We actively support the latest version of the SDK. We support the immediate previous version on best-efforts basis. All other versions are no longer supported nor maintained.
 
 # Release History
-* [3.6.1-ea] Add create and get/set methods to improve SDK usability
+* [3.6.1-ea] - Add create and get/set methods to improve SDK usability
 * [3.6.1] - Add conversion date preference parameter to conversion/create and rates/detailed
 * [3.5.1] - Add top-up margin balance endpoint
 * [3.4.4] - Add funding accounts endpoint
