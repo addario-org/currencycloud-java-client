@@ -20,15 +20,43 @@ public class MarginBalanceTopUp {
 
     private String accountId;
     private String currency;
+    private BigDecimal amount;
     private BigDecimal transferredAmount;
     private Date transferCompletedAt;
 
-    public String getAccountId() {
-        return accountId;
+    protected MarginBalanceTopUp() { }
+
+    private MarginBalanceTopUp(String currency, BigDecimal amount) {
+        this.currency = currency;
+        this.amount = amount;
+    }
+
+    public static MarginBalanceTopUp create() {
+        return new MarginBalanceTopUp();
+    }
+
+    public static MarginBalanceTopUp create(String currency, BigDecimal amount) {
+        return new MarginBalanceTopUp(currency, amount);
     }
 
     public String getCurrency() {
         return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public String getAccountId() {
+        return accountId;
     }
 
     public BigDecimal getTransferredAmount() {
