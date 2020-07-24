@@ -17,15 +17,60 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaymentDeliveryDate {
 
-      private Date paymentDate;
+    private Date paymentDate;
     private Date paymentDeliveryDate;
     private Date paymentCutoffTime;
     private String paymentType;
     private String currency;
     private String bankCountry;
 
+    protected PaymentDeliveryDate() { }
+
+    private PaymentDeliveryDate(Date paymentDate, String paymentType, String currency, String bankCountry) {
+        this.paymentDate = paymentDate;
+        this.paymentType = paymentType;
+        this.currency = currency;
+        this.bankCountry = bankCountry;
+    }
+
+    public static PaymentDeliveryDate create() {
+        return new PaymentDeliveryDate();
+    }
+
+    public static PaymentDeliveryDate create(Date paymentDate, String paymentType, String currency, String bankCountry) {
+        return new PaymentDeliveryDate(paymentDate, paymentType, currency, bankCountry);
+    }
+
     public Date getPaymentDate() {
         return paymentDate;
+    }
+
+    public void setPaymentDate(Date paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getBankCountry() {
+        return bankCountry;
+    }
+
+    public void setBankCountry(String bankCountry) {
+        this.bankCountry = bankCountry;
     }
 
     public Date getPaymentDeliveryDate() {
@@ -34,18 +79,6 @@ public class PaymentDeliveryDate {
 
     public Date getPaymentCutoffTime() {
         return paymentCutoffTime;
-    }
-
-    public String getPaymentType() {
-        return paymentType;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public String getBankCountry() {
-        return bankCountry;
     }
 
     @Override
