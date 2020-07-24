@@ -24,6 +24,22 @@ public class QuotePaymentFee {
     private BigDecimal feeAmount;
     private String feeCurrency;
 
+    protected QuotePaymentFee() {}
+
+    private QuotePaymentFee(String paymentCurrency, String paymentDestinationCountry, String paymentType) {
+        this.paymentCurrency = paymentCurrency;
+        this.paymentDestinationCountry = paymentDestinationCountry;
+        this.paymentType = paymentType;
+    }
+
+    public static QuotePaymentFee create() {
+        return new QuotePaymentFee();
+    }
+
+    public static QuotePaymentFee create(String paymentCurrency, String paymentDestinationCountry, String paymentType) {
+        return new QuotePaymentFee(paymentCurrency, paymentDestinationCountry, paymentType);
+    }
+
     public String getAccountId() {
         return accountId;
     }
