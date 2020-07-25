@@ -29,9 +29,9 @@ While we expose certain routes on the sandbox API without the requirement for au
 To use the Currencycloud SDK in a Maven project, add the following dependency to your project's `pom.xml`:
 ```xml
 <dependency>
-    <groupId>com.currencycloud.currencycloud-java</groupId>
-    <artifactId>currencycloud-java</artifactId>
-    <version>3.6.1</version>
+    <groupId>org.addario.currencycloud-java-client</groupId>
+    <artifactId>currencycloud-java-client</artifactId>
+     <version>3.6.1-ea</version>
 </dependency>
 ```
 

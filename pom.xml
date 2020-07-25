@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.currencycloud.currencycloud-java</groupId>
-    <artifactId>currencycloud-java</artifactId>
-    <version>3.6.3-ea</version>
+    <groupId>org.addario.currencycloud-java-client</groupId>
+    <artifactId>currencycloud-java-client</artifactId>
+    <version>3.6.1-ea</version>
     <packaging>jar</packaging>
 
     <name>Currencycloud</name>
-    <description>Currency Cloud API v2 Java client</description>
-    <url>https://github.com/CurrencyCloud/currencycloud-java/</url>
+    <description>Currencycloud API v2 Java client (FORK)</description>
+    <url>https://github.com/addario-org/currencycloud-java-client</url>
     <inceptionYear>2015</inceptionYear>
 
     <organization>
-        <name>Currencycloud</name>
-        <url>https://www.currencycloud.com/</url>
+        <name>addario-org</name>
+        <url>https://www.addario.org/</url>
     </organization>
 
     <developers>
@@ -44,7 +44,7 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/CurrencyCloud/currencycloud-java/issues</url>
+        <url>https://github.com/addario-org/currencycloud-java-client/issues</url>
     </issueManagement>
 
     <licenses>
@@ -57,14 +57,14 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:CurrencyCloud/currencycloud-java.git</connection>
-        <developerConnection>scm:git:git@github.com:CurrencyCloud/currencycloud-java.git</developerConnection>
-        <url>git@github.com:CurrencyCloud/currencycloud-java.git</url>
+        <connection>scm:git:git@github.com:addario-org/currencycloud-java-client.git</connection>
+        <developerConnection>scm:git:git@github.com:addario-org/currencycloud-java-client.git</developerConnection>
+        <url>git@github.com:addario-org/currencycloud-java-client.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <ciManagement>
-        <url>https://travis-ci.org/CurrencyCloud/currencycloud-java</url>
+        <url>https://travis-ci.org/github/addario-org/currencycloud-java-client</url>
     </ciManagement>
 
     <distributionManagement>
@@ -275,7 +275,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>CurrencyCloud Security Team &lt;security@currencycloud.com&gt;</keyname>
+                            <keyname>Addario.org Signing Key</keyname>
                         </configuration>
                     </plugin>
                 </plugins>
