@@ -1,12 +1,14 @@
-[![Build Status](https://travis-ci.org/EAddario/java-master.svg?branch=master)](https://travis-ci.org/github/EAddario/java-master)
+[![Build Status](https://travis-ci.org/Addario-org/java-master.svg?branch=master)](https://travis-ci.org/github/Addario-org/java-master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.currencycloud.currencycloud-java/currencycloud-java.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.currencycloud.currencycloud-java%22%20AND%20a:%22currencycloud-java%22)
+
 # Currencycloud API v2 Java client
+
 ## Version: 3.6.1-ea (FORK)
-This is a **fork** from the official Java SDK for the Currencycloud API. This fork includes usability enhancements.
+This is a **FORK** from the official [Java SDK for the Currencycloud API.][original] While it tries to keep in sync with the upstream version, it does also include enhancements and modifications ranging from bugfixes to usability features.
 
 Additional documentation for each API endpoint can be found at [developer.currencycloud.com][docs].
 
-If you have any queries please contact our development team at development@currencycloud.com Please quote your login Id in any correspondence as this allows us to locate your account and give you the support you need.
+If you have any queries please contact their development team at development@currencycloud.com Please quote your login Id in any correspondence as this allows us to locate your account and give you the support you need.
 
 ## Prerequisites
 ### 1. Maven (optional, but highly recommended)
@@ -262,7 +264,8 @@ We actively support the latest version of the SDK. We support the immediate prev
 * [0.7.8] - Address a concurrency issue discovered in the onBehalfOf functionality (#48) 
 
 # Copyright
-Copyright (c) 2015-2020 Currencycloud. See [LICENSE][license] for details.
+Copyright  &copy; 2015-2020 Currencycloud. See [LICENSE][license] for details.
+Copyright &copy; modifications 2020, Ed Addario
 
 [maven]:     https://maven.apache.org/index.html
 [nexus]:     http://www.sonatype.org/nexus/
@@ -270,6 +273,7 @@ Copyright (c) 2015-2020 Currencycloud. See [LICENSE][license] for details.
 [logback]:   http://logback.qos.ch/
 [rescu]:     https://github.com/mmazi/rescu
 [jackson]:   https://github.com/FasterXML/jackson
+[original]:  https://github.com/CurrencyCloud/currencycloud-java
 [docs]:      https://connect.currencycloud.com/documentation/getting-started/introduction
 [developer]: https://developer.currencycloud.com
 [travis]:    https://travis-ci.org/CurrencyCloud/currencycloud-java
