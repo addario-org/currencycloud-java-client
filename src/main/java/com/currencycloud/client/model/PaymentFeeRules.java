@@ -11,15 +11,15 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaymentFeeRules {
     @JsonProperty("payment_fee_rules")
-    private List<PaymentFeeRule> payment_fee_rules;
+    private List<PaymentFeeRule> paymentFeeRules;
 
     public List<PaymentFeeRule> getPaymentFeeRules() {
-        return payment_fee_rules;
+        return paymentFeeRules;
     }
 
     @Override
     public String toString() {
-        return String.format("{\"payment_fee_rules\":%s}", payment_fee_rules);
+        return String.format("{\"payment_fee_rules\":%s}", paymentFeeRules);
     }
 }
 

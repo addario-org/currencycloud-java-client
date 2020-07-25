@@ -17,10 +17,19 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaymentFeeRule {
 
+    private  String accountId;
     private String paymentType;
     private String chargeType;
     private BigDecimal feeAmount;
     private String feeCurrency;
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
 
     public String getPaymentType() {
         return paymentType;
@@ -42,16 +51,8 @@ public class PaymentFeeRule {
         return feeAmount;
     }
 
-    public void SetFeeAmount(BigDecimal feeAmount) {
-        this.feeAmount = feeAmount;
-    }
-
     public String getFeeCurrency() {
         return feeCurrency;
-    }
-
-    public void setFeeCurrency(String feeCurrency) {
-        this.feeCurrency = feeCurrency;
     }
 
     @Override
