@@ -1,5 +1,9 @@
-[![Build Status](https://travis-ci.org/addario-org/currencycloud-java-client.svg?branch=master)](https://github.com/addario-org/currencycloud-java-client)
-[![Maven Central](https://img.shields.io/maven-central/v/com.currencycloud.currencycloud-java/currencycloud-java.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.currencycloud.currencycloud-java%22%20AND%20a:%22currencycloud-java%22)
+[![Build Status](https://travis-ci.org/addario-org/currencycloud-java-client.svg?branch=master)](https://travis-ci.org/github/addario-org/currencycloud-java-client)
+[![Github Package](https://img.shields.io/badge/github%20package-v3.6.1--ea-brightgreen)](https://github.com/addario-org/currencycloud-java-client/packages/329443)
+[![Issues](https://img.shields.io/github/issues/addario-org/currencycloud-java-client)](https://github.com/addario-org/currencycloud-java-client/issues)
+[![License](https://img.shields.io/github/license/addario-org/currencycloud-java-client)](https://github.com/addario-org/currencycloud-java-client/blob/master/LICENSE.md)
+[![Last Commit](https://img.shields.io/github/last-commit/addario-org/currencycloud-java-client)](https://github.com/addario-org/currencycloud-java-client/commits/master)
+
 
 # Currencycloud API v2 Java client
 
