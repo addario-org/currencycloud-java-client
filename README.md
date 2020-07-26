@@ -29,7 +29,7 @@ While we expose certain routes on the sandbox API without the requirement for au
 To use the Currencycloud SDK in a Maven project, add the following dependency to your project's `pom.xml`:
 ```xml
 <dependency>
-    <groupId>org.addario.currencycloud-java-client</groupId>
+    <groupId>org.addario.currencycloud</groupId>
     <artifactId>currencycloud-java-client</artifactId>
      <version>3.6.1-ea</version>
 </dependency>
@@ -37,9 +37,9 @@ To use the Currencycloud SDK in a Maven project, add the following dependency to
 
 ### 2. Manually downloading the jars
 Download the Currencycloud SDK jar:
-1. Open https://oss.sonatype.org/#nexus-search;quick~currencycloud-java
-2. Navigate to the version of currencycloud-java that you wish to use
-3. Download the currencycloud-java-3.6.1.jar
+1. Open https://github.com/addario-org/currencycloud-java-client/packages
+2. Navigate to the version of currencycloud-java-client that you wish to use
+3. Download the currencycloud-java-client-3.6.1-ea.jar
 
 Get the list of all dependencies:
 ```Shell
