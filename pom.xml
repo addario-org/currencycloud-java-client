@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.addario.currencycloud</groupId>
+    <groupId>io.github.addario-org</groupId>
     <artifactId>currencycloud-java-client</artifactId>
     <version>3.6.1-ea</version>
     <packaging>jar</packaging>
 
-    <name>Currencycloud</name>
+    <name>currencycloud-java-client</name>
     <description>Currencycloud API v2 Java client (FORK)</description>
     <url>https://github.com/addario-org/currencycloud-java-client</url>
     <inceptionYear>2015</inceptionYear>
@@ -40,6 +40,12 @@
             <organization>Currencycloud</organization>
             <organizationUrl>https://www.currencycloud.com</organizationUrl>
         </developer>
+        <developer>
+            <name>Ed Addario</name>
+            <email>eaddario@hotmail.com</email>
+            <organization>addario-org</organization>
+            <organizationUrl>https://github.com/addario-org</organizationUrl>
+        </developer>
     </developers>
 
     <issueManagement>
@@ -66,14 +72,6 @@
     <ciManagement>
         <url>https://travis-ci.org/github/addario-org/currencycloud-java-client</url>
     </ciManagement>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>addario-org</name>
-            <url>https://maven.pkg.github.com/addario-org/currencycloud-java-client</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -131,6 +129,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -240,6 +249,31 @@
 
     <profiles>
         <profile>
+            <id>github</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>addario-org</name>
+                    <url>https://maven.pkg.github.com/addario-org/currencycloud-java-client</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>ossrh</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <name>snapshot</name>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <name>release</name>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
             <id>doclint-java8-disable</id>
             <activation>
                 <jdk>[1.8,)</jdk>
@@ -269,10 +303,16 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                         <configuration>
-                            <keyname>Addario.org Signing Key</keyname>
+                            <keyname>Ed Addario &lt;eaddario@hotmail.com&gt;</keyname>
                         </configuration>
                     </plugin>
                 </plugins>

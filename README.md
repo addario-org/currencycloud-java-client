@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/addario-org/currencycloud-java-client.svg?branch=master)](https://travis-ci.org/github/addario-org/currencycloud-java-client)
 [![Github Package](https://img.shields.io/badge/github%20package-v3.6.1--ea-brightgreen)](https://github.com/addario-org/currencycloud-java-client/packages/329443)
+[![Maven Package](https://img.shields.io/badge/maven%20package-v3.6.1--ea-brightgreen)](https://search.maven.org/artifact/io.github.addario-org/currencycloud-java-client/3.6.1-ea/jar)
 [![Issues](https://img.shields.io/github/issues/addario-org/currencycloud-java-client)](https://github.com/addario-org/currencycloud-java-client/issues)
 [![License](https://img.shields.io/github/license/addario-org/currencycloud-java-client)](https://github.com/addario-org/currencycloud-java-client/blob/master/LICENSE.md)
 [![Last Commit](https://img.shields.io/github/last-commit/addario-org/currencycloud-java-client)](https://github.com/addario-org/currencycloud-java-client/commits/master)
@@ -33,9 +34,9 @@ While we expose certain routes on the sandbox API without the requirement for au
 To use the Currencycloud SDK in a Maven project, add the following dependency to your project's `pom.xml`:
 ```xml
 <dependency>
-    <groupId>org.addario.currencycloud</groupId>
+    <groupId>io.github.addario-org</groupId>
     <artifactId>currencycloud-java-client</artifactId>
-     <version>3.6.1-ea</version>
+    <version>3.6.1-ea</version>
 </dependency>
 ```
 
